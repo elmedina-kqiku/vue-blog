@@ -8,6 +8,7 @@ import Register from './components/Register.vue'
 import ForgotPassword from './components/ForgotPassword.vue'
 import HomePage from './components/HomePage.vue'
 
+
 const routes = [
     { path: '/', component: Login },
     { path: '/login', component: Login },

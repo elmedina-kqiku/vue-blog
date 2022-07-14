@@ -1,11 +1,34 @@
 <template>
-    <button class="bg-blue-500 rounded-full w-auto px-3 py-2 text-center text-white text-sm ">
+    <button :class="getClasses">
         <slot />
     </button>
 </template>
 <script>
 export default {
-    name: ["Button"]
+    name: ["Button"],
+    props: {
+        color: {
+            type: String,
+            default: "blue"
+        }
+    },
+    computed: {
+        getClasses() {
+            return this.getPropsClass() + " rounded-full w-auto px-6 py-2 text-center text-sm text tracking-wider";
+        },
+
+    },
+    methods: {
+        getPropsClass() {
+            if (this.color === 'blue') {
+                return "bg-blue-500 text-white"
+            }
+
+            if (this.color === 'white') {
+                return "border border-blue-500 text-blue-500"
+            }
+        }
+    }
 }
 
 </script>
