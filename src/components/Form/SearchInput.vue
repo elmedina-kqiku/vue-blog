@@ -1,5 +1,5 @@
 <template>
-    <div class="relative items-center">
+    <div class="relative items-center ">
         <div class="flex absolute inset-y-0 pl-3 items-center pointer-events-none">
             <img class="h-4" src="../../assets/images/searchicon.svg" />
         </div>

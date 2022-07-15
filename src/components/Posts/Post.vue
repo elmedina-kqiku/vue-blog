@@ -15,9 +15,9 @@
         <div class="py-1 flex flex-row justify-between w-full border-y border-gray-200 ">
             <img :src="post.user" alt='image' class="" />
 
-            <div class="text-gray-500 text-xs tracking-wider">
+            <p class="text-gray-500 text-xs tracking-wider">
                 Posted at {{ post.created_at }}
-            </div>
+            </p>
         </div>
         <p class="text-gray-500">{{ post.description }}</p>
         <p><a href="" class="text-blue-400 font-medium tracking-wider">READ MORE</a></p>

@@ -1,7 +1,7 @@
 <template>
     <HomePageLayoutVue>
 
-        <div>
+        <div class="max-w-5xl mx-auto px-4">
             <nav class="pt-14">
                 <ul
                     class="flex flex-wrap border-b border-gray-200 space-x-9 text-sm font-medium tracking-wider text-gray-400">
@@ -39,6 +39,7 @@
                     <li><a href=""><img src="../assets/images/keyboard_arrow_right.svg" class="mt-1" /></a></li>
                 </ul>
             </nav>
+
 
 
 
