@@ -10,7 +10,7 @@ import HomePage from './components/HomePage.vue'
 
 
 const routes = [
-    { path: '/', component: Login },
+    { path: '/', component: HomePage },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
     { path: '/forgotpassword', component: ForgotPassword },

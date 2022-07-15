@@ -57,8 +57,12 @@
                     </div>
                     <div class="flex justify-center text-xs text-blue-500">
                         <p>
-                            <a href="" class="">Continue Without
-                                Account</a>
+                            <a href="" class="">
+                                <router-link to="/homepage">
+                                    Continue Without
+                                    Account
+                                    </router-link>
+                            </a>
                         </p>
                     </div>
                 </form>

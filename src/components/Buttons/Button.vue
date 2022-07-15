@@ -10,11 +10,11 @@ export default {
         color: {
             type: String,
             default: "blue"
-        }
+        },
     },
     computed: {
         getClasses() {
-            return this.getPropsClass() + " rounded-full w-auto px-6 py-2 text-center text-sm text tracking-wider";
+            return this.getPropsClass() + " rounded-full w-auto px-6 py-2 text-center text-sm font-normal tracking-wider";
         },
 
     },

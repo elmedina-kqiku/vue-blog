@@ -1,10 +1,10 @@
 <template>
     <div
-        class="flex items-center flex-col justify-between h-screen bg-image[url('../../assets/images/Backgroundblog.svg')] font-sans py-8">
+        class="flex items-center flex-col justify-between bg-[url('./assets/images/Backgroundblog.svg')] h-screen font-sans py-8">
         <div></div>
+
         <div>
             <slot />
-
         </div>
 
         <div>
