@@ -2,14 +2,13 @@
     <div class="bg-slave-200 pt-5 pb-12">
         <div class="">
             <div class="flex flex-row justify-between px-9  font-sans ">
-                <div class="flex flex-wrap space-x-14">
+                <div class="flex flex-wrap space-x-20">
                     <img class="h-9" src="../../assets/images/blog.svg" />
                     <div class="w-96">
                         <form action="" class="w-full">
-                            <label>
-                                <InputVue name="Search Posts" placeholder="Search Posts" />
-                            </label>
-
+                                <label>
+                                    <SearchInputVue type="search" name="Search Posts" placeholder="Search Posts" />
+                                </label>
                         </form>
                     </div>
                 </div>
@@ -37,13 +36,13 @@
 </template>
 <script>
 import ButtonVue from '../Buttons/Button.vue'
-import InputVue from '../Form/Input.vue'
+import SearchInputVue from '../Form/SearchInput.vue'
 
 export default {
     name: ["HomePageLayout"],
     components: {
         ButtonVue,
-        InputVue,
+        SearchInputVue,
     },
 }
 </script>
