@@ -4,7 +4,7 @@
             <img class="h-4" src="../../assets/images/searchicon.svg" />
         </div>
         <input type="search" placeholder="Search Posts..." name=""
-            class="border border-gray-400 w-52 md:w-full h-full rounded-full  px-9 py-2 text-left text-sm text-gray-400  outline-none" />
+            class="border border-gray-400  lg:w-96 h-full rounded-full  px-9 py-2 text-left text-sm text-gray-400  outline-none" />
     </div>
 
 </template>
