@@ -8,15 +8,16 @@ import Register from './components/Register.vue'
 import ForgotPassword from './components/ForgotPassword.vue'
 import HomePage from './components/HomePage.vue'
 import Showsinglepost from './components/Showsinglepost.vue'
+import Profiledashboard from './components/Profiledashboard.vue'
 
 
 const routes = [
-    { path: '/', component: HomePage },
+    { path: '/#', component: HomePage },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
     { path: '/forgotpassword', component: ForgotPassword },
-    { path: '/homepage', component: HomePage },
-    { path: '/showsinglepost', component: Showsinglepost }
+    { path: '/showsinglepost', component: Showsinglepost },
+    { path: '/profiledashboard', component: Profiledashboard }
 
 ]
 
