@@ -7,7 +7,7 @@ import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 import ForgotPassword from './components/ForgotPassword.vue'
 import HomePage from './components/HomePage.vue'
-import Singlepostpreview from './components/Singlepostpreview.vue'
+import Showsinglepost from './components/Showsinglepost.vue'
 
 
 const routes = [
@@ -16,7 +16,7 @@ const routes = [
     { path: '/register', component: Register },
     { path: '/forgotpassword', component: ForgotPassword },
     { path: '/homepage', component: HomePage },
-    { path: '/singlepostpreview', component: Singlepostpreview}
+    { path: '/showsinglepost', component: Showsinglepost }
 
 ]
 

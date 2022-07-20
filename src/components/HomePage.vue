@@ -4,17 +4,17 @@
         <div class="max-w-5xl mx-auto px-4">
             <nav class="pt-14">
                 <ul
-                    class="flex flex-wrap border-b border-gray-200 space-x-9 text-sm font-medium tracking-wider text-gray-400">
-                    <li class="hover:text-gray-700 border-b-2 border-blue-400 text-blue-400 pb-2 px-2">
+                    class="flex flex-col lg:flex-row border-b border-gray-200 lg:space-x-9 text-sm font-medium tracking-wider text-gray-400 ">
+                    <li class="hover:text-base border-b-2 border-blue-400 text-blue-400 pb-2 px-2">
                         <a href="">FOOD</a>
                     </li>
-                    <li class="hover:text-gray-700 pb-2 px-2">
+                    <li class="hover:text-gray-700 hover:text-base pb-2 px-2">
                         <a href="">NATURE</a>
                     </li>
-                    <li class="hover:text-gray-700 pb-2 px-2">
+                    <li class="hover:text-gray-700 hover:text-base pb-2 px-2">
                         <a href="">TECHNOLOGY</a>
                     </li>
-                    <li class="hover:text-gray-700 pb-2 px-2">
+                    <li class="hover:text-gray-700  hover:text-base pb-2 px-2">
                         <a href="">HEALTH</a>
                     </li>
                 </ul>
@@ -22,9 +22,10 @@
             </nav>
             <div class="pt-8 pl-0 grid grid-cols-2 lg:grid-cols-4 gap-4">
 
-                <Post v-for="item in items" :key="item.id" :post="item" />
+                <Postitem v-for="item in items" :key="item.id" :post="item" />
 
             </div>
+
             <nav class="mt-10">
                 <ul class="flex flex-wrap flex-row justify-end space-x-4 text-black font-normal text-sm">
                     <li><a href=""><img src="../assets/images/keyboard_arrow_left.svg" class="mt-1" /></a></li>
@@ -40,24 +41,18 @@
                 </ul>
             </nav>
 
-
-
-
-
-
-
         </div>
     </HomePageLayoutVue>
 </template>
 <script>
 import HomePageLayoutVue from "./Layouts/HomePageLayout.vue";
-import Post from "./Posts/Post.vue";
+import Postitem from "./Posts/Postitem.vue";
 
 export default {
     name: ["HomePage"],
     components: {
         HomePageLayoutVue,
-        Post
+        Postitem
     },
     data() {
         return {

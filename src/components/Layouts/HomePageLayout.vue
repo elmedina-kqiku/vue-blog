@@ -1,23 +1,23 @@
-<template >
-    <div class="bg-neutral-100 pt-5 pb-12 px-9 ">
+<template>
+    <div class="bg-neutral-100 pt-5 pb-12 px-9 max-w-full">
 
-        <div class="flex flex-row justify-between  font-sans ">
-            <div class="flex flex-wrap space-x-16">
-                <img class="h-9" src="../../assets/images/blog.svg" />
+        <div class="flex flex-col lg:flex-row  lg:justify-between space-y-3 lg:space-y-0 font-sans ">
+            <div class="flex flex-col lg:flex-wrap space-y-3 lg:space-y-0 lg:space-x-16">
+                <router-link to="/homepage"> <img class="h-9" src="../../assets/images/blog.svg" /> </router-link>
 
-                <form action="" class="w-96">
+                <form action="" class="w-96 ">
 
-                    <label>
+                    <label class="">
                         <SearchInputVue type="search" name="Search Posts" placeholder="Search Posts" />
                     </label>
 
                 </form>
 
             </div>
-            <div class="flex flex-wrap ">
-                <form action="" class="space-x-2 justify-end">
+            <div class="flex flex-col lg:flex-wrap space-y-3 lg:space-y-0">
+                <form action="" class="space-x-2">
                     <ButtonVue color="white">
-                        <router-link to="/login">LOG IN</router-link>
+                        <router-link to="/login">LOG IN </router-link>
                     </ButtonVue>
 
                     <ButtonVue color="blue">

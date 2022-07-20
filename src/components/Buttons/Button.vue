@@ -21,11 +21,11 @@ export default {
     methods: {
         getPropsClass() {
             if (this.color === 'blue') {
-                return "bg-blue-500 text-white"
+                return "bg-blue-500 hover:bg-blue-600 text-white"
             }
 
             if (this.color === 'white') {
-                return "border border-blue-500 text-blue-500"
+                return "border border-blue-500 hover:bg-gray-200 text-blue-500"
             }
         }
     }
