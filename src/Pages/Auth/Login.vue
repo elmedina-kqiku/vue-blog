@@ -61,7 +61,7 @@
                                 <router-link to="/homepage">
                                     Continue Without
                                     Account
-                                    </router-link>
+                                </router-link>
                             </a>
                         </p>
                     </div>
@@ -73,18 +73,18 @@
     </AuthLayoutVue>
 </template>
 <script>
-import InputVue from './Form/Input.vue'
-import ButtonVue from './Buttons/Button.vue'
-import AuthLayoutVue from './Layouts/AuthLayout.vue'
-import AuthCardVue from './Utils/AuthCard.vue'
+import InputVue from '@/components/Form/Input.vue'
+import ButtonVue from '@/components/Buttons/Button.vue'
+import AuthLayoutVue from '@/layouts/AuthLayout.vue'
+import AuthCardVue from '@/components/Utils/AuthCard.vue'
 export default {
     name: ["Login"],
     components: {
-    InputVue,
-    AuthLayoutVue,
-    AuthCardVue,
-    ButtonVue,
-    
+        InputVue,
+        AuthLayoutVue,
+        AuthCardVue,
+        ButtonVue,
+
     }
 }
 </script>

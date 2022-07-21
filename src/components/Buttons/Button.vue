@@ -25,7 +25,7 @@ export default {
             }
 
             if (this.color === 'white') {
-                return "border border-blue-500 hover:bg-gray-200 text-blue-500"
+                return "border border-blue-400 hover:bg-gray-200 text-blue-500"
             }
         }
     }

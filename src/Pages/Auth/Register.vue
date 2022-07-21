@@ -53,10 +53,10 @@
     </AuthLayoutVue>
 </template>
 <script>
-import InputVue from './Form/Input.vue'
-import AuthCardVue from './Utils/AuthCard.vue';
-import AuthLayoutVue from './Layouts/AuthLayout.vue';
-import ButtonVue from './Buttons/Button.vue';
+import InputVue from '@/components/Form/Input.vue'
+import AuthCardVue from '@/components/Utils/AuthCard.vue';
+import AuthLayoutVue from '@/layouts/AuthLayout.vue';
+import ButtonVue from '@/components/Buttons/Button.vue';
 
 export default {
     name: ["Register"],

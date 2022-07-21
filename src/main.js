@@ -3,21 +3,21 @@ import App from './App.vue'
 import * as VueRouter from 'vue-router';
 import './index.css'
 
-import Login from './components/Login.vue'
-import Register from './components/Register.vue'
-import ForgotPassword from './components/ForgotPassword.vue'
-import HomePage from './components/HomePage.vue'
-import Showsinglepost from './components/Showsinglepost.vue'
-import Profiledashboard from './components/Profiledashboard.vue'
+import Login from './Pages/Auth/Login.vue'
+import Register from './Pages/Auth/Register.vue'
+import ForgotPassword from './Pages/Auth/ForgotPassword.vue'
+import HomePage from './Pages/HomePage.vue'
+import PostsShow from './Pages/Posts/PostsShow.vue'
+import ProfileDashboard from './Pages/Profile/Dashboard/Index.vue'
 
 
 const routes = [
-    { path: '/#', component: HomePage },
+    { path: '/', component: HomePage },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
     { path: '/forgotpassword', component: ForgotPassword },
-    { path: '/showsinglepost', component: Showsinglepost },
-    { path: '/profiledashboard', component: Profiledashboard }
+    { path: '/posts/:id', component: PostsShow },
+    { path: '/profile/dashboard', component: ProfileDashboard }
 
 ]
 

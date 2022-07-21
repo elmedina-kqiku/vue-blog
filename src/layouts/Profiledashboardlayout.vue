@@ -1,0 +1,72 @@
+<template>
+    <div class="flex flex-row overflow-hidden h-screen  max-w-full">
+        <div class="w-64  flex flex-col justify-between bg-white p-10">
+
+            <div>
+                <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
+                    <router-link to="/homepage"> <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
+                    </router-link>
+                    <img src="@/assets/images/profileicon.svg" class="h-20 w-20" />
+                    <p class="text-base font-normal tracking-wider text-black">Carter Bator</p>
+                    <p class="text-xs font-normal text-gray-500">carter@gmail.com</p>
+                    <p class="text-xs font-normal text-gray-500 ">+1 23 435 546</p>
+                </div>
+
+                <ul class="pt-9 flex flex-col h-full">
+                    <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider text-blue-500">
+                        <img src="@/assets/images/dashboardicon.svg" alt="" />
+                        <a href="">Dashboard </a>
+                    </li>
+                    <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                        <img src="@/assets/images/categoriesicon.svg" alt="" />
+                        <a href="">Categories</a>
+                    </li>
+                    <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                        <img src="@/assets/images/categoriesicon.svg" alt="">
+                        <a href="">Posts</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-auto">
+                <img src="@/assets/images/logouticon.svg" alt="">
+                <a href="">Log Out</a>
+
+            </div>
+        </div>
+        <div class="w-full bg-neutral-100 pt-6 pl-12 pr-5 pb-12">
+            <div class=" flex flex-row justify-between">
+                <form action="">
+                    <label class="">
+                        <SearchInputVue type="search" name="Search Posts" placeholder="Search Posts" />
+                    </label>
+                </form>
+                <div class="flex flex-col space-y-2  md:flex-row md:space-x-9 md:space-y-0 ">
+                    <div class="bg-white rounded-full p-1">
+                        <!-- width po rritet kur bohet zoom-->
+                        <img src="@/assets/images/notificationicon.svg" alt="" class="" />
+                    </div>
+                    <ButtonVue color="blue">CREATE POST</ButtonVue>
+                </div>
+            </div>
+            <div class=" pt-11">
+                <slot />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import SearchInputVue from '@/components/Form/SearchInput.vue'
+import ButtonVue from '@/components/Buttons/Button.vue'
+export default {
+
+    name: ["Profiledashboardlayout"],
+
+    components: {
+        SearchInputVue,
+        ButtonVue,
+    },
+}
+</script>

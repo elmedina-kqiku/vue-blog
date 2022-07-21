@@ -8,13 +8,13 @@
                     <li class="hover:text-base border-b-2 border-blue-400 text-blue-400 pb-2 px-2">
                         <a href="">FOOD</a>
                     </li>
-                    <li class="hover:text-gray-700 hover:text-base pb-2 px-2">
+                    <li class="hover:text-gray-700 pb-2 px-2">
                         <a href="">NATURE</a>
                     </li>
-                    <li class="hover:text-gray-700 hover:text-base pb-2 px-2">
+                    <li class="hover:text-gray-700 pb-2 px-2">
                         <a href="">TECHNOLOGY</a>
                     </li>
-                    <li class="hover:text-gray-700  hover:text-base pb-2 px-2">
+                    <li class="hover:text-gray-700 pb-2 px-2">
                         <a href="">HEALTH</a>
                     </li>
                 </ul>
@@ -45,8 +45,8 @@
     </HomePageLayoutVue>
 </template>
 <script>
-import HomePageLayoutVue from "./Layouts/HomePageLayout.vue";
-import Postitem from "./Posts/Postitem.vue";
+import HomePageLayoutVue from "@/layouts/HomePageLayout.vue";
+import Postitem from "@/Pages/Posts/Postitem.vue";
 
 export default {
     name: ["HomePage"],
@@ -62,8 +62,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post1.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post1.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
 
@@ -72,8 +72,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post2.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post2.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
 
@@ -82,8 +82,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post3.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post3.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
                 {
@@ -91,8 +91,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post4.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post4.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
 
@@ -101,8 +101,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post5.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post5.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
 
@@ -111,8 +111,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post6.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post6.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
 
@@ -121,8 +121,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post7.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post7.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
                 {
@@ -130,8 +130,8 @@ export default {
                     title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
                     created_at: "Nov, 25, 2021",
                     description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`../assets/images/post8.svg`),
-                    user: require(`../assets/images/profileicon.svg`),
+                    image: require(`@/assets/images/post8.svg`),
+                    user: require(`@/assets/images/profileicon.svg`),
                     comments_count: 3,
                 },
 

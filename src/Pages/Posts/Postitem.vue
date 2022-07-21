@@ -3,15 +3,15 @@
         <div class="relative">
 
             <div class="flex flex-row absolute justify-around px-1 py-0 bg-white w-12 h-5 top-1 right-1">
-                <router-link to="/showsinglepost"> <img src="../../assets/images/messageicon.svg" class="mt-1 h-3 w-3">
+                <router-link to="/showsinglepost"> <img src="@/assets/images/messageicon.svg" class="mt-1 h-3 w-3">
                 </router-link>
                 <p class="text-xs"> ({{ post.comments_count }}) </p>
             </div>
             <img :src="post.image" alt="image" class=" w-full h-40 object-cover">
 
         </div>
-        <p class="text-gray-700 font-bold hover:text-base">
-            <router-link to="/showsinglepost">
+        <p class="text-gray-700 font-bold">
+            <router-link to="/posts/1">
                 {{ post.title }}
             </router-link>
         </p>
@@ -23,8 +23,8 @@
             </p>
         </div>
         <p class="text-gray-500">{{ post.description }}</p>
-        <p class="text-blue-400 font-medium tracking-wider hover:text-base">
-            <router-link to="/showsinglepost">READ MORE </router-link>
+        <p class="text-blue-400 font-medium tracking-wider ">
+            <router-link to="/posts1">READ MORE </router-link>
         </p>
     </div>
 </template>

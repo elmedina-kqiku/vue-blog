@@ -3,7 +3,7 @@
         <div
             class=" grid grid-cols-1 lg:grid-cols-12 lg:max-w-full max-w-2xl gap-20 lg:gap-20 xl:gap-28 lg:pl-32 pt-12  text-sm ">
             <div class="col-span-1 lg:col-span-8 space-y-4">
-                <img src="../assets/images/post1.svg" alt="image" class="w-full object-cover h-96" />
+                <img src="@/assets/images/post1.svg" alt="image" class="w-full object-cover h-96" />
                 <p class="text-black font-bold uppercase">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id duis rhoncus non volutpat volutpat,
                     leo
@@ -11,7 +11,7 @@
                 </p>
                 <div class="py-4 flex flex-row justify-between w-full border-y border-gray-200 ">
                     <div class="flex flex-wrap flex-row">
-                        <img src="../assets/images/profileicon.svg" alt='image' class="" />
+                        <img src="@/assets/images/profileicon.svg" alt='image' class="" />
                         <p class="pl-2">
                             By <a href="" class="text-blue-400">Carter Bator</a>
                         </p>
@@ -102,7 +102,7 @@
                         Comments (2)
                     </p>
                     <div class="flex flex-row space-x-5 justify-between  pt-8">
-                        <img src="../assets/images/profileicon2.svg" class="mb-12 h-14 w-14" />
+                        <img src="@/assets/images/profileicon2.svg" class="mb-12 h-14 w-14" />
                         <div class="flex flex-col lg:py-4 px-6 space-y-1 bg-white">
                             <div class="flex flex-row space-x-3">
                                 <p class="text-xs text-black font-bold">John doe</p>
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="flex flex-row space-x-5 justify-between  pl-10 pt-3">
-                        <img src="../assets/images/profileicon3.svg" class="mb-12 h-14 w-14" />
+                        <img src="@/assets/images/profileicon3.svg" class="mb-12 h-14 w-14" />
                         <div class="flex flex-col py-4 px-6 space-y-1 bg-white">
                             <div class="flex flex-row space-x-3">
                                 <p class="text-xs text-black font-bold">Jessie Smith</p>
@@ -143,41 +143,41 @@
                 <div class="flex flex-col space-y-3">
                     <p class="uppercase text-sm font-normal ">More like this</p>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="../assets/images/post1.svg" class="object-cover w-16 h-16" />
+                        <img src="@/assets/images/post1.svg" class="object-cover w-16 h-16" />
                         <div class="flex flex-col space-y-2 text-xs">
                             <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
                             <div class="flex flex-row">
-                                <img src="../assets/images/profileicon.svg" />
+                                <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="../assets/images/post2.svg" class=" object-cover w-16 h-16" />
+                        <img src="@/assets/images/post2.svg" class=" object-cover w-16 h-16" />
                         <div class="flex flex-col space-y-2 text-xs">
                             <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
                             <div class="flex flex-row">
-                                <img src="../assets/images/profileicon.svg" />
+                                <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="../assets/images/post3.svg" class="object-cover w-16 h-16" />
+                        <img src="@/assets/images/post3.svg" class="object-cover w-16 h-16" />
                         <div class="flex flex-col space-y-2 text-xs">
                             <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
                             <div class="flex flex-row">
-                                <img src="../assets/images/profileicon.svg" />
+                                <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="../assets/images/post4.svg" class="object-cover w-16 h-16" />
+                        <img src="@/assets/images/post4.svg" class="object-cover w-16 h-16" />
                         <div class="flex flex-col space-y-2 text-xs">
                             <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
                             <div class="flex flex-row">
-                                <img src="../assets/images/profileicon.svg" />
+                                <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
                             </div>
                         </div>
@@ -210,10 +210,10 @@
 </template>
 
 <script>
-import HomePageLayoutVue from "./Layouts/HomePageLayout.vue";
-import BadgeVue from "./Badge/Badge.vue";
+import HomePageLayoutVue from '@/layouts/HomePageLayout.vue';
+import BadgeVue from '@/components/Badge/Badge.vue';
 export default {
-    name: ["Showsinglepost"],
+    name: ["Show"],
 
     components: {
         HomePageLayoutVue,
