@@ -58,7 +58,7 @@
                     <div class="flex justify-center text-xs text-blue-500">
                         <p>
                             <a href="" class="">
-                                <router-link to="/homepage">
+                                <router-link to="/">
                                     Continue Without
                                     Account
                                 </router-link>

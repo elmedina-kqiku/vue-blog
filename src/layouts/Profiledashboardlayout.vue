@@ -4,8 +4,7 @@
 
             <div>
                 <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
-                    <router-link to="/homepage"> <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
-                    </router-link>
+                    <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
                     <img src="@/assets/images/profileicon.svg" class="h-20 w-20" />
                     <p class="text-base font-normal tracking-wider text-black">Carter Bator</p>
                     <p class="text-xs font-normal text-gray-500">carter@gmail.com</p>
@@ -62,7 +61,7 @@ import SearchInputVue from '@/components/Form/SearchInput.vue'
 import ButtonVue from '@/components/Buttons/Button.vue'
 export default {
 
-    name: ["Profiledashboardlayout"],
+    name: ["ProfileDashboardLayout"],
 
     components: {
         SearchInputVue,

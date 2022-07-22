@@ -1,5 +1,5 @@
 <template>
-    <Profiledashboardlayout>
+    <ProfileDashboardLayoutVue>
         <div class="col-span-3">
             <p class="text-base font-normal tracking-wider text-blue">MOST COMMENTS</p>
 
@@ -7,17 +7,20 @@
         <div class="col-span-2">
             <p class="text-base font-normal tracking-wider text-blue">LATEST POST</p>
         </div>
-    </Profiledashboardlayout>
+        
+    </ProfileDashboardLayoutVue>
 
 </template>
 <script>
-import Profiledashboardlayout from '@/layouts/Profiledashboardlayout.vue';
+console.log("Hello, Vue!");
+
+import ProfileDashboardLayoutVue from '@/layouts/ProfileDashboardLayout.vue';
 
 export default {
-    name: ["ProfileDashboard"],
+    name: ["ProfileDashboardIndex"],
 
     components: {
-        Profiledashboardlayout
+        ProfileDashboardLayoutVue,
     }
 }
 </script>

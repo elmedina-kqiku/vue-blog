@@ -143,9 +143,13 @@
                 <div class="flex flex-col space-y-3">
                     <p class="uppercase text-sm font-normal ">More like this</p>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="@/assets/images/post1.svg" class="object-cover w-16 h-16" />
+                        <router-link to="/posts/1">
+                            <img src="@/assets/images/post1.svg" class="object-cover w-16 h-16" />
+                        </router-link>
                         <div class="flex flex-col space-y-2 text-xs">
-                            <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            <router-link to="/posts/1">
+                                <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            </router-link>
                             <div class="flex flex-row">
                                 <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
@@ -153,9 +157,13 @@
                         </div>
                     </div>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="@/assets/images/post2.svg" class=" object-cover w-16 h-16" />
+                        <router-link to="/posts/1">
+                            <img src="@/assets/images/post2.svg" class=" object-cover w-16 h-16" />
+                        </router-link>
                         <div class="flex flex-col space-y-2 text-xs">
-                            <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            <router-link to="/posts/1">
+                                <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            </router-link>
                             <div class="flex flex-row">
                                 <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
@@ -163,9 +171,13 @@
                         </div>
                     </div>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="@/assets/images/post3.svg" class="object-cover w-16 h-16" />
+                        <router-link to="/posts/1">
+                            <img src="@/assets/images/post3.svg" class="object-cover w-16 h-16" />
+                        </router-link>
                         <div class="flex flex-col space-y-2 text-xs">
-                            <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            <router-link to="/posts/1">
+                                <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            </router-link>
                             <div class="flex flex-row">
                                 <img src="@/assets/images/profileicon.svg" />
                                 <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
@@ -173,13 +185,17 @@
                         </div>
                     </div>
                     <div class="flex flex-row items-center space-x-6">
-                        <img src="@/assets/images/post4.svg" class="object-cover w-16 h-16" />
+                        <router-link to="/posts/1">
+                            <img src="@/assets/images/post4.svg" class="object-cover w-16 h-16" />
+                        </router-link>
                         <div class="flex flex-col space-y-2 text-xs">
-                            <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
-                            <div class="flex flex-row">
-                                <img src="@/assets/images/profileicon.svg" />
-                                <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
-                            </div>
+                            <router-link to="/posts/1">
+                                <p class="font-normal  tracking-wider uppercase">Lorem ipsum dolor amet, consectetur</p>
+                            </router-link>
+                                    <div class="flex flex-row">
+                                        <img src="@/assets/images/profileicon.svg" />
+                                        <p class="pl-2">By <a href="" class="text-blue-400 ">Carter Bator</a></p>
+                                    </div>
                         </div>
                     </div>
                 </div>
