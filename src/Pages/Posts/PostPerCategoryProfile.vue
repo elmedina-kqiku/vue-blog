@@ -1,15 +1,15 @@
 <template>
     <div class="space-y-2 text-sm">
         <div class="relative">
-            <router-link to=""> 
-            <div class="flex flex-row absolute justify-around px-1 py-0 bg-white w-12 h-5 top-1 right-1">
-                <img src="@/assets/images/messageicon.svg" class="mt-1 h-3 w-3">
-               
-                <p class="text-xs"> ({{ post.comments_count }}) </p>
-            </div>
+            <router-link to="">
+                <div class="flex flex-row absolute justify-around px-1 py-0 bg-white w-12 h-5 top-1 right-1">
+                    <img src="@/assets/images/messageicon.svg" class="mt-1 h-3 w-3">
+
+                    <p class="text-xs"> ({{ post.comments_count }}) </p>
+                </div>
             </router-link>
             <router-link to="/posts/1">
-            <img :src="post.image" alt="image" class=" w-full h-40 object-cover">
+                <img :src="post.image" alt="image" class=" w-full h-40 object-cover">
             </router-link>
         </div>
         <p class="text-gray-700 font-bold">

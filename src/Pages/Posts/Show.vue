@@ -58,7 +58,7 @@
             <div class="col-span-1 lg:col-span-4 w-60 flex flex-col space-y-14">
                 <div class="flex flex-col space-y-3">
                     <p class="uppercase text-sm font-normal ">More like this</p>
-                  <PostSugesstionsVue v-for="post in posts" :key="post.id" :posts="post" />
+                  <SugesstionsVue v-for="post in posts" :key="post.id" :post="post" />
                    
                 </div>
                 <div class="flex flex-col space-y-3">
@@ -91,7 +91,7 @@
 import HomePageLayoutVue from '@/layouts/HomePageLayout.vue';
 import BadgeVue from '@/components/Badge/Badge.vue';
 import SinglePostVue from '@/Pages/Posts/SinglePost.vue';
-import PostSugesstionsVue from './PostSugesstions.vue';
+import SugesstionsVue from './Sugesstions.vue';
 
 
 export default {
@@ -101,7 +101,7 @@ export default {
     HomePageLayoutVue,
     BadgeVue,
     SinglePostVue,
-    PostSugesstionsVue
+    SugesstionsVue,
 },
     data () {
         return  {
@@ -120,24 +120,24 @@ export default {
                 id: 3,
                 image: require('@/assets/images/post2.svg'),
                 title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                        user: require(`@/assets/images/profileicon.svg`),
-                            name: "Carter Bator"
+                user: require(`@/assets/images/profileicon.svg`),
+                name: "Carter Bator"
                 },
                  
                 {
                     
-                    id: 2,
-                    image: require('@/assets/images/post3.svg'),
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    user: require(`@/assets/images/profileicon.svg`),
-                    name: "Carter Bator",
+                id: 2,
+                image: require('@/assets/images/post3.svg'),
+                title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
+                user: require(`@/assets/images/profileicon.svg`),
+                name: "Carter Bator",
                 },
                 {
-                    id: 3,
-                    image: require('@/assets/images/post4.svg'),
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    user: require(`@/assets/images/profileicon.svg`),
-                    name: "Carter Bator",
+                id: 3,
+                image: require('@/assets/images/post4.svg'),
+                title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
+                user: require(`@/assets/images/profileicon.svg`),
+                name: "Carter Bator",
                 },
                 {
                 id: 3,

@@ -3,7 +3,9 @@
 
         <div class="flex flex-col lg:flex-row  lg:justify-between space-y-3 lg:space-y-0 font-sans ">
             <div class="flex flex-col lg:flex-row space-y-3 lg:space-y-0 lg:space-x-16">
-                <router-link to="/"> <img class="h-9" src="@/assets/images/blog.svg" /> </router-link>
+                <router-link to="/"> 
+                    <img class="h-9" src="@/assets/images/blog.svg" />
+                 </router-link>
 
                 <form action="" class=" ">
 

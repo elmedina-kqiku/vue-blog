@@ -1,0 +1,24 @@
+<template>
+    <div class="flex flex-row items-center space-x-6">
+        <router-link to="/posts/1" class="flex shrink-0">
+            <img :src="post.image" class="object-cover w-20 h-16" />
+        </router-link>
+        <div class="flex flex-col space-y-2 text-xs">
+            <router-link to="/posts/1">
+                <p class="font-normal  tracking-wider uppercase"> {{ post.title }} </p>
+            </router-link>
+            <div class="flex flex-row">
+                <img :src="post.user" />
+                <p class="pl-2">By <a href="" class="text-blue-400 "> {{ post.name }} </a></p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name: ["PostSugesstions"],
+    props: [
+        "post"
+    ]
+}
+</script>

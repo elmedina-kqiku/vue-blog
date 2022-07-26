@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row overflow-hidden h-screen  max-w-full">
+    <div class="flex flex-row overflow-hidden h-screen  ">
         <div class="w-64  flex flex-col justify-between bg-white p-10">
 
             <div>
@@ -21,7 +21,7 @@
                         <a href="">Categories</a>
                     </li>
                     <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
-                        <img src="@/assets/images/categoriesicon.svg" alt="">
+                        <img src="@/assets/images/Postsicon.svg" alt="">
                         <a href="">Posts</a>
                     </li>
 
@@ -34,7 +34,7 @@
 
             </div>
         </div>
-        <div class="w-full bg-neutral-100 pt-6 pl-12 pr-5 pb-12">
+        <div class="w-full bg-neutral-100 pt-6 px-12  pb-12">
             <div class=" flex flex-row justify-between">
                 <form action="">
                     <label class="">
