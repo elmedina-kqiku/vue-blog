@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-row overflow-hidden h-screen  ">
-        <div class="w-64  flex flex-col justify-between bg-white p-10">
+    <div class="flex flex-row   ">
+        <div class="w-64  h-screen  bg-blue-100 flex flex-col justify-between bg-white p-10 h ">
 
-            <div>
+            <div class="">
                 <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
                     <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
                     <img src="@/assets/images/profileicon.svg" class="h-20 w-20" />
@@ -33,6 +33,9 @@
                 <a href="">Log Out</a>
 
             </div>
+        </div>
+        <div class="block md:hidden">
+            <router-link to="">MENU</router-link>
         </div>
         <div class="w-full bg-neutral-100 pt-6 px-12  pb-12">
             <div class=" flex flex-row justify-between">

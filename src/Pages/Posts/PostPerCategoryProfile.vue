@@ -8,6 +8,9 @@
                     <p class="text-xs"> ({{ post.comments_count }}) </p>
                 </div>
             </router-link>
+            <div class="absolute bg-blue-400 -left-3 px-2 py-1 top-5">
+                <p class="text-white font-normal text-sm tracking-wider">{{post.category}} ({{ post.posts_count }})</p>
+            </div>
             <router-link to="/posts/1">
                 <img :src="post.image" alt="image" class=" w-full h-40 object-cover">
             </router-link>
