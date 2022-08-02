@@ -1,25 +1,25 @@
 <template>
     <ProfileLayoutVue>
         <div class="flex flex-col justify-between space-y-16">
-            <div class="flex lg:flex-row justify-between space-x-16 ">
+            <div class="grid grid-cols-1 lg:grid-cols-5 justify-between gap-16 ">
 
-                <div class="space-y-3">
+                <div class="cols-span-1 lg:col-span-3 space-y-3">
                     <p class="text-base font-normal tracking-wider text-black">MOST COMMENTS</p>
                     <div>
                         <MostCommentsProfile :post="item" />
                     </div>
                 </div>
-                <div class="space-y-3">
+
+                <div class="col-span-1 lg:col-span-2 space-y-3">
                     <p class="text-base font-normal tracking-wider text-black">LATEST POST</p>
                     <LatestPostProfile v-for="post in posts" :key="post.id" :post="post" />
                     <Pagination class="flex flex-start"/>
                 </div>
                 
-
             </div>
             <div class="">
                 <p class="text-base font-normal tracking-wider text-blue mb-4">POST PER CATEGORY</p>
-                <div class="flex lg:flex-row space-x-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 space-x-8">
                     <PostPerCategoryProfile v-for="item in items" :key="item.id" :post="item" />
                 </div>
             </div>

@@ -64,7 +64,7 @@ import SearchInputVue from '@/components/Form/SearchInput.vue'
 import ButtonVue from '@/components/Buttons/Button.vue'
 export default {
 
-    name: ["ProfileDashboardLayout"],
+    name: ["ProfileLayout"],
 
     components: {
         SearchInputVue,

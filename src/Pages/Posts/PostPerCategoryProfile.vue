@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-2 text-sm">
+    <div class=" space-y-2 text-sm">
         <div class="relative">
             <router-link to="">
                 <div class="flex flex-row absolute justify-around px-1 py-0 bg-white w-12 h-5 top-1 right-1">

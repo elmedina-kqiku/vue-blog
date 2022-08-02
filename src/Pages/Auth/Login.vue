@@ -11,7 +11,7 @@
 
                     <label for="">
                         <InputVue id="email address" type="email" autocomplete="name" placeholder="Email Address"
-                            value="" name="email address" />
+                            value="" name="email address"  />
                     </label>
                     <label>
                         <InputVue id="password" type="password" autocomplete="name" placeholder="Password" value=""
