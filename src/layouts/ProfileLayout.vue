@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-row   ">
-        <div class="w-64  h-screen  bg-blue-100 flex flex-col justify-between bg-white p-10 h ">
+    <div class="flex flex-row overflow-hidden">
+        <div class="w-64 flex-shrink-0 h-screen  bg-blue-100 flex flex-col justify-between bg-white p-10 ">
 
             <div class="">
                 <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
@@ -12,18 +12,31 @@
                 </div>
 
                 <ul class="pt-9 flex flex-col h-full">
-                    <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider text-blue-500">
+                    <router-link to="/profile/dashboard" class="relative">
+                    <li :class="{'text-blue-500':active == 'dashboard'}"
+                        class="flex flex-row space-x-6 text-xs font-normal tracking-wider text-blue-500">
+                    
                         <img src="@/assets/images/dashboardicon.svg" alt="" />
                         <a href="">Dashboard </a>
                     </li>
-                    <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                    </router-link>
+                    <router-link to="/profile/categories"> 
+                        <li :class="{'text-blue-500':active == 'categories'}" 
+                        class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                                              
                         <img src="@/assets/images/categoriesicon.svg" alt="" />
-                        <a href="">Categories</a>
+                        <a href="">Categories</a>                   
                     </li>
-                    <li class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                    </router-link>
+                    <router-link to="/profile/posts">
+                    <li
+                    :class="{'text-blue-500':active == 'posts'}"
+                    class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
+                        
                         <img src="@/assets/images/Postsicon.svg" alt="">
                         <a href="">Posts</a>
                     </li>
+                    </router-link>
 
                 </ul>
 
@@ -37,7 +50,8 @@
         <div class="block md:hidden">
             <router-link to="">MENU</router-link>
         </div>
-        <div class="w-full bg-neutral-100 pt-6 px-12  pb-12">
+
+        <div class="w-full bg-neutral-100 pt-6 px-12  pb-12 overflow-auto h-screen">
             <div class=" flex flex-row justify-between">
                 <form action="">
                     <label class="">
@@ -52,7 +66,7 @@
                     <ButtonVue color="blue">CREATE POST</ButtonVue>
                 </div>
             </div>
-            <div class=" pt-11">
+            <div class="pt-11">
                 <slot />
             </div>
         </div>
@@ -69,6 +83,13 @@ export default {
     components: {
         SearchInputVue,
         ButtonVue,
+    },
+
+    props:{
+        active:{
+            default:null,
+            type:String,
+        }
     },
 }
 </script>

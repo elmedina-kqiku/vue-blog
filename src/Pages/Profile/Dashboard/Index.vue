@@ -1,7 +1,7 @@
 <template>
-    <ProfileLayoutVue>
+    <ProfileLayoutVue active="dashboard">
         <div class="flex flex-col justify-between space-y-16">
-            <div class="grid grid-cols-1 lg:grid-cols-5 justify-between gap-16 ">
+            <div class="grid grid-cols-1 lg:grid-cols-5 justify-between gap-20 ">
 
                 <div class="cols-span-1 lg:col-span-3 space-y-3">
                     <p class="text-base font-normal tracking-wider text-black">MOST COMMENTS</p>

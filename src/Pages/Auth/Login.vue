@@ -1,7 +1,6 @@
 <template >
     <AuthLayoutVue>
         <AuthCardVue>
-
             <template #title>
                 Sign In To Blog
             </template>
@@ -10,7 +9,7 @@
                 <form method="POST" class="flex flex-col space-y-3 w-full">
 
                     <label for="">
-                        <InputVue id="email address" type="email" autocomplete="name" placeholder="Email Address"
+                        <InputVue id="email" type="email" autocomplete="name" placeholder="Email Address"
                             value="" name="email address"  />
                     </label>
                     <label>
@@ -43,7 +42,7 @@
                         </p>
                     </div>
 
-                    <ButtonVue type="submit">
+                    <ButtonVue type="submit" @click="signIn">
                         Sign In
                     </ButtonVue>
 
@@ -85,6 +84,11 @@ export default {
         AuthCardVue,
         ButtonVue,
 
+    },
+    methods: {
+        signIn(event) {
+            alert(event);
+        }
     }
 }
 </script>

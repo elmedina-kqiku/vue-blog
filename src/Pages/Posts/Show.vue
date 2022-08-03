@@ -1,7 +1,7 @@
 <template>
     <HomePageLayoutVue>
         <div
-            class=" grid grid-cols-1 lg:grid-cols-12 lg:max-w-full max-w-2xl gap-20 lg:gap-20 xl:gap-28 lg:pl-32 pt-12  text-sm ">
+            class=" grid grid-cols-1 lg:grid-cols-12 lg:max-w-full max-w-2xl gap-20 xl:gap-28 xl:gap-28 lg:pl-32 pt-12  text-sm ">
             <div class="col-span-1 lg:col-span-8 space-y-4">
 
 
@@ -12,48 +12,12 @@
                     <button>PREVIOUS</button>
                     <button class="uppercase">Next</button>
 
-                </div>
-                <div class="">
+                </div>               
                     <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
                         Comments (2)
                     </p>
-                    <div class="flex flex-row space-x-5 justify-between  pt-8">
-                        <img src="@/assets/images/profileicon2.svg" class="mb-12 h-14 w-14" />
-                        <div class="flex flex-col lg:py-4 px-6 space-y-1 bg-white">
-                            <div class="flex flex-row space-x-3">
-                                <p class="text-xs text-black font-bold">John doe</p>
-                                <p class="text-xs text-gray-500">21 Oct 2021 16:21</p>
-                            </div>
-
-                            <p class="text-xs text-gray-500">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna commodo nisi in
-                                condimentum aenean feugiat tristique scelerisque nibh. Nulla sem risus eget
-                                malesuada facilisi mauris.
-                            </p>
-                            <p class="text-xs text-blue-500  font-bold flex justify-end">
-                                <a href="">Reply</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex flex-row space-x-5 justify-between  pl-10 pt-3">
-                        <img src="@/assets/images/profileicon3.svg" class="mb-12 h-14 w-14" />
-                        <div class="flex flex-col py-4 px-6 space-y-1 bg-white">
-                            <div class="flex flex-row space-x-3">
-                                <p class="text-xs text-black font-bold">Jessie Smith</p>
-                                <p class="text-xs text-gray-500">21 Oct 2021 16:27</p>
-                            </div>
-
-                            <p class="text-xs text-gray-500">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna commodo nisi in
-                                condimentum aenean feugiat tristique scelerisque nibh. Nulla sem risus eget
-                                malesuada facilisi mauris.
-                            </p>
-                            <p class="text-xs text-blue-500 font-bold flex justify-end">
-                                <a href="">Reply</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    
+                    <CommentsVue />                
             </div>
             <div class="col-span-1 lg:col-span-4 w-60 flex flex-col space-y-14">
                 <div class="flex flex-col space-y-3">
@@ -63,13 +27,15 @@
                 </div>
                 <div class="flex flex-col space-y-3">
                     <p class="uppercase text-sm font-normal tracking-wider ">Categories</p>
+                <div class="flex flex-col space-y-3">
+                    <p class="uppercase text-sm font-normal tracking-wider ">Categories</p>
                     <ul class="flex flex-col space-y-3 text-sm font-normal text-gray-500 tracking-wider">
                         <li><a href="">Food</a></li>
                         <li><a href="">Nature</a></li>
                         <li><a href="">Technology</a></li>
                         <li><a href="">Health</a></li>
                     </ul>
-
+                </div>
                 </div>
                 <div class="flex flex-wrap ">
                     <BadgeVue class=" mt-3">Food</BadgeVue>
@@ -92,7 +58,7 @@ import HomePageLayoutVue from '@/layouts/HomePageLayout.vue';
 import BadgeVue from '@/components/Badge/Badge.vue';
 import SinglePostVue from '@/Pages/Posts/SinglePost.vue';
 import SugesstionsVue from './Sugesstions.vue';
-
+import CommentsVue from '@/components/Comments/Comments.vue';
 
 export default {
     name: ["Show"],
@@ -102,6 +68,7 @@ export default {
     BadgeVue,
     SinglePostVue,
     SugesstionsVue,
+    CommentsVue,
 },
     data () {
         return  {
