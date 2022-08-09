@@ -6,35 +6,27 @@
             </template>
 
             <div class="flex justify-center">
-                <form method="POST" class="flex flex-col space-y-3 w-full">
+                <form method="POST" @submit.prevent="submit" class="flex flex-col space-y-3 w-full">
 
-                    <label for="">
+                    <div>
+                        <label for="">
                         <InputVue id="email" type="email" autocomplete="name" placeholder="Email Address"
-                            value="" name="email address"  />
+                        v-model="v$.email.$model"
+                         name="email address"  />
                     </label>
-                    <label>
-                        <InputVue id="password" type="password" autocomplete="name" placeholder="Password" value=""
+                        <ValidationError v-for="error of v$.email.$errors" :key="error.$uid" :error="error"/>
+                    </div>
+
+
+                    <div>
+                        <label>
+                        <InputVue id="password" type="password" autocomplete="name" placeholder="Password" 
+                         v-model="v$.password.$model"
                             name="password" />
                     </label>
 
-                    <!--   IKONA E PASSWORD-IT : 
-
-                    https://codepen.io/walkerca/pen/qBaBgwx: 
-                    
-                     <div class="field has-addons">
-             <div class="control is-expanded">
-            <input v-if="showPassword" type="text" class="input" v-model="password" />
-            <input v-else type="password" class="input" v-model="password">
-            </div>
-            <div class="control">
-            <button class="button" @click="toggleShow">
-                <span class="icon is-small is-right">
-                <i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
-                </span>
-            </button>
-            </div>
-            </div>
-                -->
+                     <ValidationError v-for="error of v$.password.$errors" :key="error.$uid" :error="error"/>
+                    </div>
 
                     <div class="mt-3 text-center text-xs text-blue-500 ">
                         <p>
@@ -42,7 +34,7 @@
                         </p>
                     </div>
 
-                    <ButtonVue type="submit" @click="signIn">
+                    <ButtonVue type="submit">
                         Sign In
                     </ButtonVue>
 
@@ -76,19 +68,39 @@ import InputVue from '@/components/Form/Input.vue'
 import ButtonVue from '@/components/Buttons/Button.vue'
 import AuthLayoutVue from '@/layouts/AuthLayout.vue'
 import AuthCardVue from '@/components/Utils/AuthCard.vue'
+import useVuelidate from '@vuelidate/core'
+import { required, email,minLength } from '@vuelidate/validators'
+import ValidationError from '@/components/Form/ValidationError.vue'
+
 export default {
     name: ["Login"],
     components: {
-        InputVue,
-        AuthLayoutVue,
-        AuthCardVue,
-        ButtonVue,
+    InputVue,
+    AuthLayoutVue,
+    AuthCardVue,
+    ButtonVue,
+    ValidationError
+},
+    setup: () => ({ v$: useVuelidate() }),
+  data () {
+    return {
+      email: '',
+      password:"",
+    }
+  },
+  validations () {
+    return {
+      email: { required,email,$lazy: true },
+      password:{required, minLength:minLength(6)},
+    }
+  },
+    methods:{
+        async submit () {
+        const isFormCorrect = await this.v$.$validate()
+        if (!isFormCorrect) return
 
-    },
-    methods: {
-        signIn(event) {
-            alert(event);
-        }
+        alert('Submitted');
+    }
     }
 }
 </script>
