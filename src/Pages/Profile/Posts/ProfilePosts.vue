@@ -1,155 +1,107 @@
 <template>
 <ProfileLayoutVue active="posts">
-   
-    <table class="w-full">
-    <thead class="text-xs font-normal">
-        <tr>
-        <th class="p-3 text-left">TITLE</th>
-        <th class="p-3 text-left">COMMENTS</th>
-        <th class="p-3 text-left">CATEGORY</th>
-        <th class="p-3 text-left">POSTED BY</th>
-        <th class="p-3 text-left">POSTED AT</th>
-        <th class="p-3 text-left">LAST UPDATED</th>
-        </tr>
-    </thead> 
-    <tbody class="bg-white">
-        <tr  v-for="post in posts" :key="post.id" class="ml-6">
-        <td class="p-3 text-sm text-gray-900 font-normal flex flex-row">
-            <img :src="post.image" alt="" class="w-16 h-10" />
-            <p class="ml-4">{{post.title}}</p>
-        </td>
-        <td class="p-3 text-xs text-gray-500">{{post.comments}}</td>
-        <td class="p-3 text-xs text-gray-500">{{post.category}}</td>
-        <td class="p-3 text-xs text-gray-900 font-normal flex flex-row">
-            <img :src="post.profileicon" alt="" class="w-6 h-6" /> 
-            <p class="ml-3">{{post.posted_by}}</p>
-        </td>
-        <td class="p-3 text-xs text-gray-500">{{post.posted_at}}
-        {{post.posted_at}}</td>
-        <td class="p-3 text-xs text-gray-500">{{post.last_updated}}</td>    
-    </tr>
-    </tbody>   
-    </table>
-    
-    <PaginationVue />
-    </ProfileLayoutVue>
+
+      <table class="w-full">
+            <thead class="text-xs font-normal">
+                  <tr>
+                        <th class="p-3 text-left">TITLE</th>
+                        <th class="p-3 text-left">COMMENTS</th>
+                        <th class="p-3 text-left">CATEGORY</th>
+                        <th class="p-3 text-left">POSTED BY</th>
+                        <th class="p-3 text-left">POSTED AT</th>
+                        <th class="p-3 text-left">LAST UPDATED</th>
+                        <th> </th>
+                  </tr>
+            </thead>
+            <tbody class="bg-white">
+                  <tr v-for="post in posts" :key="post.id" :post="post" class="ml-6">
+                        <td class="p-3 text-sm text-gray-900 font-normal flex flex-row">
+                              <img :src="post.image" alt="" class="w-16 h-10" />
+                              <p class="ml-2">{{post.title}}</p>
+                        </td>
+                        <td class="p-3 text-xs text-gray-500">{{post.comments}}</td>
+                        <td class="p-3 text-xs text-gray-500">{{post.category}}</td>
+                        <td class="p-3 text-xs text-gray-900 font-normal flex flex-row">
+                              <img :src="post.user" alt="" class="w-6 h-6" />
+                              <p class="ml-3">{{post.posted_by}}</p>
+                        </td>
+                        <td class="p-3 text-xs text-gray-500">{{post.posted_at}}
+                        </td>
+                        <td class="p-3 text-xs text-gray-500 flex flex-row">
+                              <p>{{post.last_updated}}</p>
+
+                              <button @click="toggleDetails" class="w-4 h-4">
+                                    <img src="@/assets/images/threedots_vertical.svg" alt="" class="" /></button>
+                              <div class="bg-white border border-md ">
+                                <ul v-if="detailsAreVisible">
+                                    <li class="flex flex-row hover:bg-gray-100 p-2">
+                                        <img src="@/assets/images/pen_icon.svg" class="w-4 h-4" />
+                                        <p class="ml-3">Edit Post</p>
+                                    </li>
+                                    <li class="flex flex-row hover:bg-gray-100 p-2">
+                                        <img src="@/assets/images/delete_icon.svg" class="w-4 h-4" />
+                                        <p class="ml-3">Delete Post</p>
+                                    </li>
+                              </ul>
+                              </div>
+                        </td>
+
+                  </tr>
+            </tbody>
+      </table>
+
+      <PaginationVue />
+</ProfileLayoutVue>
 </template>
+
 <script>
 import ProfileLayoutVue from '@/layouts/ProfileLayout.vue';
 import PaginationVue from '@/components/Pagination/Pagination.vue';
 export default {
-    name: ["ProfilePosts"],
-    components: {
-    ProfileLayoutVue,
-    PaginationVue
-},
-     data() {
-        return {
-            posts: [
-                {
-                id: 1,
-                image: require('@/assets/images/postsimages/post1.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '3',
-                category: 'Food',
-                profileicon: require('@/assets/images/profileicon/profileicon1.svg'),
-                posted_by: 'Alena Calzoni',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
+      name: ["ProfilePosts"],
+      components: {
+            ProfileLayoutVue,
+            PaginationVue
+      },
+      data() {
+            return {
+                  detailsAreVisible: false,
+                  posts: []
+            }
+      },
+     
+      mounted() {
+        this.getPosts();
+      },
+      methods: {
+            toggleDetails() {
+                  this.detailsAreVisible = !this.detailsAreVisible;
+            },
 
-                {
-                id: 2,
-                image: require('@/assets/images/postsimages/post2.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '4',
-                category: 'Food',
-                profileicon: require('@/assets/images/profileicon/profileicon2.svg'),
-                posted_by: 'Jocelyn Dorwart',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
+            async getPosts() {
+                const posts = await fetch('https://dummyjson.com/products?limit=10')
+                .then(res => res.json())
+                .then(res => {
+                    return res;
+                });
 
-                {
-                id: 3,
-                image: require('@/assets/images/postsimages/tech1.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '1',
-                category: 'Technology',
-                profileicon: require('@/assets/images/profileicon/profileicon3.svg'),
-                posted_by: 'Gustavo Saris',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
+             this.posts = posts.products.map((post) => {
+                        return {
+                              id: post.id,
+                              image: post.thumbnail,
+                              title: post.title,
+                              comments: post.stock,
+                              posted_by: post.user.username,
+                              user: require('@/assets/images/profileicon/profileicon1.svg'),                        
+                              category: post.category,                            
+                              posted_at: 'Nov, 21, 2021 10:23PM',
+                              last_updated: 'Nov, 21, 2021 10:23PM',
+                        }
+                  });
 
-                {
-                id: 4,
-                image: require('@/assets/images/postsimages/health1.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '5',
-                category: 'Health',
-                profileicon: require('@/assets/images/profileicon/profileicon4.svg'),
-                posted_by: 'Randy Torff',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
-                {
-                id: 5,
-                image: require('@/assets/images/postsimages/health2.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '2',
-                category: 'Health',
-                profileicon: require('@/assets/images/profileicon/profileicon5.svg'),
-                posted_by: 'Kadin Carder',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
-                {
-                id: 6,
-                image: require('@/assets/images/postsimages/health3.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '3',
-                category: 'Health',
-                profileicon: require('@/assets/images/profileicon/profileicon6.svg'),
-                posted_by: 'Martin Botosh',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
-                {
-                id: 7,
-                image: require('@/assets/images/postsimages/nature1.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '1',
-                category: 'Nature',
-                profileicon: require('@/assets/images/profileicon/profileicon7.svg'),
-                posted_by: 'Marcus Donin',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
-                {
-                id: 8,
-                image: require('@/assets/images/postsimages/health1.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '4',
-                category: 'Health',
-                profileicon: require('@/assets/images/profileicon/profileicon8.svg'),
-                posted_by: 'Martin Botosh',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
-                {
-                id: 9,
-                image: require('@/assets/images/postsimages/nature2.svg'),
-                title: 'Task Title lorem ipsumdolor sit amet',
-                comments: '2',
-                category: 'Nature',
-                profileicon: require('@/assets/images/profileicon/profileicon9.svg'),
-                posted_by: 'Marcus Donin',
-                posted_at: 'Nov, 21, 2021 10:23PM',
-                last_updated: 'Nov, 21, 2021 10:23PM',
-                },
-            ]
-        }
-     }
+            }
+
+
+      }
 }
 </script>

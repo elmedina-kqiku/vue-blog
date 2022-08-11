@@ -18,13 +18,17 @@
         </p>
     </div>
     <div class="flex flex-wrap gap-3 ">
-        <BadgeVue>Food</BadgeVue>
-        <BadgeVue>Meat</BadgeVue>
-        <BadgeVue>Vegetables</BadgeVue>
+        <BadgeVue>Iphone</BadgeVue>
+        <BadgeVue>Samsung</BadgeVue>
+        <BadgeVue>Nokia</BadgeVue>
     </div>
-    <p class="text-xs text-gray-500 tracking-wider">
-        {{post.description}}
-    </p>
+    <p class="text-xs text-gray-500 tracking-wider">{{post.description}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">{{post.brand}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">{{post.category}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">Price: {{post.price}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">Discount Percentage: {{post.discountPercentage}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">Rating: {{post.rating}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">Stock: {{post.stock}}</p>
     </div>
 </template>
 <script>

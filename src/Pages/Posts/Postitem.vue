@@ -8,7 +8,7 @@
                 <p class="text-xs"> ({{ post.comments_count }}) </p>
             </div>
             </router-link>
-            <router-link to="/posts/1">
+            <router-link :to="'/posts/'+post.id">
             <img :src="post.image" alt="image" class=" w-full h-40 object-cover">
             </router-link>
         </div>
