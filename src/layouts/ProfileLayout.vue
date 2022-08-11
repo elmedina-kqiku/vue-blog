@@ -16,7 +16,7 @@
                     <li :class="{'text-blue-500':active == 'dashboard'}"
                         class="flex flex-row space-x-6 text-xs font-normal tracking-wider text-blue-500">
                     
-                        <img src="@/assets/images/dashboardicon.svg" alt="" />
+                        <img src="@/assets/images/dashboardicon.svg" alt="" class="w-6 h-6" />
                         <a href="">Dashboard </a>
                     </li>
                     </router-link>
@@ -24,7 +24,7 @@
                         <li :class="{'text-blue-500':active == 'categories'}" 
                         class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
                                               
-                        <img src="@/assets/images/categoriesicon.svg" alt="" />
+                        <img src="@/assets/images/categoriesicon.svg" alt="" class="w-6 h-6" />
                         <a href="">Categories</a>                   
                     </li>
                     </router-link>
@@ -33,7 +33,7 @@
                     :class="{'text-blue-500':active == 'posts'}"
                     class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-6">
                         
-                        <img src="@/assets/images/Postsicon.svg" alt="">
+                        <img src="@/assets/images/Postsicon.svg" alt="" class="w-6 h-6" >
                         <a href="">Posts</a>
                     </li>
                     </router-link>

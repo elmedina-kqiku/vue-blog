@@ -102,7 +102,7 @@ export default {
             }
       },
 
-      created() {
+      mounted() {
             this.getPosts();
             this.getItem(this.$route.params.id);
             this.getComments();
@@ -163,11 +163,6 @@ export default {
                               username: comment.user.username,
                               counted: comment.total,
                               date: '20.10.2020'
-
-                              // username: comment.user,
-                              // comment: comment.body,
-                              //  user_reply: require(`@/assets/images/profileicon.svg`),
-                              //  username_reply: comment.username
 
                         }
                   });
