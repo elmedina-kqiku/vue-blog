@@ -1,7 +1,7 @@
 <template>
     <HomePageLayoutVue>
 
-        <div class="max-w-5xl mx-auto px-4">
+        <div class="max-w-6xl mx-auto px-4">
             <nav class="pt-14">
                 <ul
                     class="flex flex-col lg:flex-row border-b border-gray-200 lg:space-x-9 text-sm font-medium tracking-wider text-gray-400 ">
@@ -21,7 +21,7 @@
                 </ul>
 
             </nav>
-            <div class="pt-8 pl-0 grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="pt-8 pl-0 grid grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <Postitem v-for="item in items" :key="item.id" :post="item" />
 
@@ -46,89 +46,33 @@ export default {
     },
     data() {
         return {
-            items: [
-                {
-                    id: 1,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post1.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-
-                {
-                    id: 2,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post2.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-
-                {
-                    id: 3,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post3.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-                {
-                    id: 4,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post4.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-
-                {
-                    id: 5,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post5.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-
-                {
-                    id: 6,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post6.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-
-                {
-                    id: 7,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post7.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-                {
-                    id: 8,
-                    title: "LOREM IPSUM DOLOR SITO AMET, CONSECTETUR",
-                    created_at: "Nov, 25, 2021",
-                    description: "Lorem ipsum dolor sit amet, cectetur adipiscing elit. Faucibus lorem [...]",
-                    image: require(`@/assets/images/post8.svg`),
-                    user: require(`@/assets/images/profileicon.svg`),
-                    comments_count: 3,
-                },
-
-
-            ]
+            items: []
         }
-    }
+    },
+    mounted() {
+            this.getItems();
+      },
+      methods: {
+            async getItems() {
+                  const items = await fetch('https://dummyjson.com/products?limit=8')
+                        .then(res => res.json())
+                        .then(res => {
+                              return res;
+                        });
+
+                  this.items = items.products.map((item) => {
+                        return {
+                              id: item.id,
+                              title: item.title,
+                              created_at: "Nov, 25, 2021",
+                              description: item.description,
+                              image: item.thumbnail,
+                              user: require(`@/assets/images/profileicon.svg`),
+                              comments_count: item.stock,
+                        }
+                  })
+            }
+}
 }
 
 </script>

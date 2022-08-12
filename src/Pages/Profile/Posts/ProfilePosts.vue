@@ -78,22 +78,23 @@ export default {
                   this.detailsAreVisible = !this.detailsAreVisible;
             },
 
+          
             async getPosts() {
-                const posts = await fetch('https://dummyjson.com/products?limit=10')
-                .then(res => res.json())
-                .then(res => {
-                    return res;
-                });
+                  const posts = await fetch('https://dummyjson.com/products?limit=10')
+                        .then(res => res.json())
+                        .then(res => {
+                              return res;
+                        });
 
-             this.posts = posts.products.map((post) => {
+                  this.posts = posts.products.map((post) => {
                         return {
                               id: post.id,
                               image: post.thumbnail,
                               title: post.title,
                               comments: post.stock,
-                              posted_by: post.user.username,
-                              user: require('@/assets/images/profileicon/profileicon1.svg'),                        
                               category: post.category,                            
+                              user: require('@/assets/images/profileicon/profileicon1.svg'),                        
+                              posted_by: post.brand,
                               posted_at: 'Nov, 21, 2021 10:23PM',
                               last_updated: 'Nov, 21, 2021 10:23PM',
                         }
