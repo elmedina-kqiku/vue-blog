@@ -18,17 +18,16 @@
             </div>
             <div class="flex flex-col lg:flex-wrap space-y-3 lg:space-y-0">
                 <form action="" class="space-x-2">
-                    <ButtonVue color="white">
-                        <router-link to="/login">LOG IN </router-link>
-                    </ButtonVue>
-
-                    <ButtonVue color="blue">
-                        <router-link to="/register">
-                            SIGN UP
-                        </router-link>
+                        <ButtonVue color="white" url="/login">
+                       LOG IN 
+                        </ButtonVue>
+                    
+                    <ButtonVue color="blue" url="/register">                       
+                            SIGN UP                        
                     </ButtonVue>
                 </form>
             </div>
+            <router-view></router-view>
         </div>
 
 

@@ -14,7 +14,7 @@
 
                         <ul class="pt-9 flex flex-col h-full">
                               <router-link to="/profile/dashboard" class="relative">
-                                    <li :class="{'text-blue-500':active == 'dashboard'}" class="flex flex-row space-x-6 text-xs font-normal tracking-wider text-blue-500">
+                                    <li :class="{'text-blue-500':active == 'dashboard'}" class="flex flex-row space-x-6 text-xs font-normal tracking-wider">
 
                                           <img src="@/assets/images/dashboardicon.svg" alt="" class="w-6 h-6" />
                                           <a href="">Dashboard </a>

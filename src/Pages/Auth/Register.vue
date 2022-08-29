@@ -34,7 +34,7 @@
                        <ValidationError v-for="error of v$.confirmPassword.$errors" :key="error.$uid" :error="error" />
                         </div>
 
-                        <ButtonVue type="submit">
+                        <ButtonVue @click="saveData" type="submit">
                               Sign Up
                         </ButtonVue>
 
@@ -125,9 +125,12 @@ export default {
             async submit() {
                   const isFormCorrect = await this.v$.$validate()
                   if (!isFormCorrect)
-                        return
-                  alert('Submitted');
+                        return;
+                       },
+            saveData() {
+                 this.$router.replace('/profile/dashboard');
             }
+
       }
 
 }
