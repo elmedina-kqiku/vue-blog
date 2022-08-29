@@ -32,7 +32,7 @@
     </div>
 </template>
 <script>
-import BadgeVue from '@/components/badge/Badge.vue';
+import BadgeVue from '@/components/Badge/Badge.vue';
 
 export default {
     name: ["SinglePost"],

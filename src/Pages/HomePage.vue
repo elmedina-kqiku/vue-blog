@@ -34,7 +34,7 @@
 </template>
 <script>
 import HomePageLayoutVue from "@/layouts/HomePageLayout.vue";
-import Postitem from "@/Pages/Posts/Postitem.vue";
+import Postitem from "@/components/Posts/Postitem.vue";
 import PaginationVue from "@/components/Pagination/Pagination.vue";
 
 export default {

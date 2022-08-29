@@ -29,22 +29,7 @@
                               </div>
                         </div>
                   </div>
-                  <div class="flex flex-row justify-between bg-gray-200 px-5 py-5">
-                        <img src="@/assets/images/profileicon/profileicon.svg" alt="" class="mb-12 h-14 w-14">
-                        <div class="flex flex-col justify-between bg-white w-full ml-6 py-3 px-6">
-
-                              <p class="text-xs text-gray-500">
-                                    write comment...
-                              </p>
-
-                              <div class="flex flex-row justify-end items-center">
-                                    <img src="@/assets/images/alternate_email_icon.svg" alt="" class="ml-5 -h-4 w-4">
-                                    <img src="@/assets/images/emojiicon.svg" alt="" class="ml-5 h-4 w-4">
-                                    <ButtonVue class="ml-5">COMMENT</ButtonVue>
-                              </div>
-                        </div>
-                  </div>
-
+                 <WriteComment />
             </div>
             <div class="col-span-1 lg:col-span-1  flex flex-col space-y-14">
                   <div class="flex flex-col space-y-3">
@@ -61,7 +46,7 @@
                         </ul>
 
                   </div>
-                  <div class="flex flex-wrap ">
+                  <div class="flex flex-wrap">
                         <BadgeVue class="mt-3">Smartphone</BadgeVue>
                         <BadgeVue class="ml-3 mt-3">Nokia</BadgeVue>
                         <BadgeVue class="mt-3">Samsung</BadgeVue>
@@ -77,20 +62,20 @@
 
 <script>
 import ProfileLayoutVue from '@/layouts/ProfileLayout.vue'
-import SinglePostVue from '@/Pages/Posts/SinglePost.vue'
-import SugesstionsVue from '@/Pages/Posts/Sugesstions.vue'
+import SinglePostVue from '@/components/Posts/SinglePost.vue'
+import SugesstionsVue from '@/components/ProfilePosts/Sugesstions.vue'
 import BadgeVue from '@/components/Badge/Badge.vue'
-import ButtonVue from '@/components/Buttons/Button.vue'
+import WriteComment from '@/components/Comments/WriteComment.vue'
 
 export default {
       name: ["ProfileShow"],
       components: {
-            ProfileLayoutVue,
-            SinglePostVue,
-            SugesstionsVue,
-            BadgeVue,
-            ButtonVue,
-      },
+    ProfileLayoutVue,
+    SinglePostVue,
+    SugesstionsVue,
+    BadgeVue,
+    WriteComment
+},
       data() {
             return {
                   item: {},

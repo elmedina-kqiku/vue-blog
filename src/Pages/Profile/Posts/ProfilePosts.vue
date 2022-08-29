@@ -31,18 +31,19 @@
                               <p>{{post.last_updated}}</p>
 
                               <button @click="toggleDetails" class="w-4 h-4">
-                                    <img src="@/assets/images/threedots_vertical.svg" alt="" class="" /></button>
-                              <div class="bg-white border border-md ">
-                                <ul v-if="detailsAreVisible">
-                                    <li class="flex flex-row hover:bg-gray-100 p-2">
-                                        <img src="@/assets/images/pen_icon.svg" class="w-4 h-4" />
-                                        <p class="ml-3">Edit Post</p>
-                                    </li>
-                                    <li class="flex flex-row hover:bg-gray-100 p-2">
-                                        <img src="@/assets/images/delete_icon.svg" class="w-4 h-4" />
-                                        <p class="ml-3">Delete Post</p>
-                                    </li>
-                              </ul>
+                                    <img src="@/assets/images/threedots_vertical.svg" alt="" class="" />
+                              </button>
+                              <div v-if="detailsAreVisible" class="bg-white border border-md ">
+                                    <ul>
+                                          <li class="flex flex-row hover:bg-gray-100 p-2">
+                                                <img src="@/assets/images/pen_icon.svg" class="w-4 h-4" />
+                                                <p class="ml-3">Edit Post</p>
+                                          </li>
+                                          <li class="flex flex-row hover:bg-gray-100 p-2">
+                                                <img src="@/assets/images/delete_icon.svg" class="w-4 h-4" />
+                                                <p class="ml-3">Delete Post</p>
+                                          </li>
+                                    </ul>
                               </div>
                         </td>
 
@@ -69,16 +70,17 @@ export default {
                   posts: []
             }
       },
-     
+
       mounted() {
-        this.getPosts();
+            this.getPosts();
+            console.log('test')
+            this.getApi();
       },
       methods: {
             toggleDetails() {
                   this.detailsAreVisible = !this.detailsAreVisible;
             },
 
-          
             async getPosts() {
                   const posts = await fetch('https://dummyjson.com/products?limit=10')
                         .then(res => res.json())
@@ -92,15 +94,21 @@ export default {
                               image: post.thumbnail,
                               title: post.title,
                               comments: post.stock,
-                              category: post.category,                            
-                              user: require('@/assets/images/profileicon/profileicon1.svg'),                        
+                              category: post.category,
+                              user: require('@/assets/images/profileicon/profileicon1.svg'),
                               posted_by: post.brand,
                               posted_at: 'Nov, 21, 2021 10:23PM',
                               last_updated: 'Nov, 21, 2021 10:23PM',
                         }
                   });
 
-            }
+            },
+            // getApi(){
+            // const api = fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population').then(res=>{
+            //       console.log(res.data.data)
+            // });
+            // return api;
+            // }
 
 
       }

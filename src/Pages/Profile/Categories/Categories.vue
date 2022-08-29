@@ -15,7 +15,7 @@
 import ProfileLayoutVue from '@/layouts/ProfileLayout.vue'
 import NavbarHomepage from '@/components/NavbarHomepage/NavbarHomepage.vue'
 import Pagination from '@/components/Pagination/Pagination.vue'
-import Postitem from '@/Pages/Posts/Postitem.vue'
+import Postitem from '@/components/ProfilePosts/Postitem.vue'
 export default {
       name: ["Categories"],
       components: {
