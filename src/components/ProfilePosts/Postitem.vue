@@ -8,12 +8,12 @@
                 <p class="text-xs"> ({{ post.comments_count }}) </p>
             </div>
             </router-link>
-            <router-link :to="'/posts/'+post.id">
+            <router-link :to="'/profile/posts/'+post.id">
             <img :src="post.image" alt="image" class=" w-full h-40 object-cover">
             </router-link>
         </div>
         <p class="text-gray-700 font-bold">
-            <router-link to="/posts/1">
+            <router-link :to="'/profile/posts/' + post.id">
                 {{ post.title }}
             </router-link>
         </p>
@@ -26,7 +26,7 @@
         </div>
         <p class="text-gray-500">{{ post.description }}</p>
         <p class="text-blue-400 font-medium tracking-wider ">
-            <router-link to="/posts/1">READ MORE </router-link>
+            <router-link :to="'/profile/posts/' + post.id">READ MORE </router-link>
         </p>
     </div>
 </template>

@@ -8,7 +8,7 @@
         <div class="flex flex-wrap flex-row">
             <img :src="post.user" alt='image' class="" />
             <p class="pl-2">
-                By <a href="" class="text-blue-400">{{post.name}}</a>
+                By <a  class="text-blue-400">{{post.name}}</a>
             </p>
         </div>
 
@@ -23,8 +23,8 @@
         <BadgeVue>Nokia</BadgeVue>
     </div>
     <p class="text-xs text-gray-500 tracking-wider">{{post.description}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">{{post.brand}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">{{post.category}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">Brand: {{post.brand}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">Category: {{post.category}}</p>
     <p class="text-xs text-gray-500 tracking-wider">Price: {{post.price}}</p>
     <p class="text-xs text-gray-500 tracking-wider">Discount Percentage: {{post.discountPercentage}}</p>
     <p class="text-xs text-gray-500 tracking-wider">Rating: {{post.rating}}</p>
@@ -32,7 +32,7 @@
     </div>
 </template>
 <script>
-import BadgeVue from '@/components/Badge/Badge.vue';
+import BadgeVue from '@/components/badge/Badge.vue';
 
 export default {
     name: ["SinglePost"],

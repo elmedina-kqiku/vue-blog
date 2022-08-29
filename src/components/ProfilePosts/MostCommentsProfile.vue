@@ -9,11 +9,15 @@
                     <p class="text-base"> ({{ post.comments_count }}) </p>
                 </div>
             </router-link>
+            <router-link :to="'/profile/posts/' + post.id">
             <img :src="post.image" alt="image" class="w-full object-cover h-72" />
+            </router-link>
         </div>
+        <router-link :to="'/profile/posts/' + post.id">
         <p class="text-gray-900 font-normal uppercase">
             {{ post.title }}
         </p>
+        </router-link>
         <div class="py-4 flex flex-row justify-between w-full border-y border-gray-200 ">
             <div class="flex flex-wrap flex-row">
                 <img :src="post.user" alt='image' class="" />
