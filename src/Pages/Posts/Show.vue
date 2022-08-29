@@ -81,8 +81,8 @@
 <script>
 import HomePageLayoutVue from '@/layouts/HomePageLayout.vue';
 import BadgeVue from '@/components/Badge/Badge.vue';
-import SinglePostVue from '@/Pages/Posts/SinglePost.vue';
-import SugesstionsVue from './Sugesstions.vue';
+import SinglePostVue from '@/components/Posts/SinglePost.vue';
+import SugesstionsVue from '@/components/Posts/Sugesstions.vue';
 // import { title } from 'process';
 
 export default {

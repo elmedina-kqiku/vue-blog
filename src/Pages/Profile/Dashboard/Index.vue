@@ -30,9 +30,9 @@
 
 <script>
 import ProfileLayoutVue from '@/layouts/ProfileLayout.vue';
-import MostCommentsProfile from '@/Pages/Posts/MostCommentsProfile.vue';
-import LatestPostProfile from '@/Pages/Posts/LatestPostProfile.vue';
-import PostPerCategoryProfile from '@/Pages/Posts/PostPerCategoryProfile.vue';
+import MostCommentsProfile from '@/components/ProfilePosts/MostCommentsProfile.vue';
+import LatestPostProfile from '@/components/ProfilePosts/LatestPostProfile.vue';
+import PostPerCategoryProfile from '@/components/ProfilePosts/PostPerCategoryProfile.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
 
 export default {
