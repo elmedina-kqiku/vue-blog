@@ -1,7 +1,7 @@
 <template>
-    <button :class="getClasses">
+    <router-link :class="getClasses" :to="url">
         <slot />
-    </button>
+    </router-link>
 </template>
 <script>
 export default {
@@ -11,6 +11,10 @@ export default {
             type: String,
             default: "blue"
         },
+        url:{
+            type: String,
+            default: ''
+        }
     },
     computed: {
         getClasses() {
@@ -25,7 +29,7 @@ export default {
             }
 
             if (this.color === 'white') {
-                return "border border-blue-400 hover:bg-gray-200 text-blue-500"
+                return "bg-white border border-blue-400 hover:bg-gray-200 text-blue-500"
             }
         }
     }
