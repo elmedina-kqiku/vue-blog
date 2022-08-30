@@ -103,12 +103,12 @@ export default {
                   });
 
             },
-            // getApi(){
-            // const api = fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population').then(res=>{
-            //       console.log(res.data.data)
-            // });
-            // return api;
-            // }
+            getApi(){
+            const api = fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population').then(res=>{
+                  console.log(res.data.data)
+            });
+            return api;
+            }
 
 
       }

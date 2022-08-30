@@ -41,7 +41,7 @@
 
                   <div class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-auto">
                         <img src="@/assets/images/logouticon.svg" alt="">
-                        <a href="">Log Out</a>
+                        <button @click="saveData">Log Out</button>
 
                   </div>
             </div>
@@ -90,5 +90,11 @@ export default {
                   type: String,
             }
       },
+
+      methods: {
+            saveData() {
+                 this.$router.replace('/login');
+            }
+      }
 }
 </script>
