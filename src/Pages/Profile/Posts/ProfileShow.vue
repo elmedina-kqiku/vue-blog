@@ -91,7 +91,7 @@ export default {
       },
       methods: {
             async getPosts() {
-                  const posts = await fetch('https://dummyjson.com/products?limit=4')
+                  const posts = await fetch('https://ma.tenton.al/api/v1/posts')
                         .then(res => res.json())
                         .then(res => {
                               return res;

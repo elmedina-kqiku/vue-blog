@@ -1,46 +1,65 @@
 <template>
-    <div class="space-y-3">
-    <img :src="post.image" alt="image" class="w-full object-cover h-96" />
+    <div class="space-y-3" v-if="post">
+        <template v-if="post.resources[0]?.preview_url">
+            <img :src="post.resources[0]?.preview_url" alt="image" class="w-full object-cover h-96" />
+        </template>
+        <template v-else>
+            <div class="w-full h-96 bg-gray-500">
+            </div>
+        </template>
     <p class="text-black font-bold uppercase">
       {{post.title}}
     </p>
     <div class="py-4 flex flex-row justify-between w-full border-y border-gray-200 ">
         <div class="flex flex-wrap flex-row">
-            <img :src="post.user" alt='image' class="" />
+            <img src="@/assets/images/profileicon.svg" alt='image' class="" /> 
             <p class="pl-2">
-                By <a  class="text-blue-400">{{post.name}}</a>
+                By <a  class="text-blue-400">Someone</a>
             </p>
         </div>
-
-
         <p class="text-gray-500 text-xs tracking-wider">
-            Posted at {{post.created_at}}
+            Posted at {{formatDate(post.created_at)}}
         </p>
     </div>
     <div class="flex flex-wrap gap-3 ">
-        <BadgeVue>Iphone</BadgeVue>
-        <BadgeVue>Samsung</BadgeVue>
-        <BadgeVue>Nokia</BadgeVue>
+        <BadgeVue v-for="category in categories" :key="category.id">{{category.name}}</BadgeVue>
     </div>
-    <p class="text-xs text-gray-500 tracking-wider">{{post.description}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">Brand: {{post.brand}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">Category: {{post.category}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">Price: {{post.price}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">Discount Percentage: {{post.discountPercentage}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">Rating: {{post.rating}}</p>
-    <p class="text-xs text-gray-500 tracking-wider">Stock: {{post.stock}}</p>
+    <p class="text-xs text-gray-500 tracking-wider">{{post.content}}</p>
     </div>
 </template>
 <script>
 import BadgeVue from '@/components/Badge/Badge.vue';
+import axios from 'axios';
 
 export default {
     name: ["SinglePost"],
     components: {
         BadgeVue,
     },
+    data() {
+        return {
+            categories: null
+        }
+    },
     props: [
         "post"
-    ]
+    ],
+    mounted() {
+        this.getCategories();
+    },
+    methods: {
+        formatDate(dateString) {
+            const date = new Date(dateString);
+                // Then specify how you want your dates to be formatted
+            return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
+        },
+        getCategories() {
+                  axios.get('https://ma.tenton.al/api/v1/base/post_categories')
+                        .then(res => {
+                              console.log('categories test',res)
+                              this.categories = res.data.data.slice(0, 3)
+                        })
+        },
+    }
 }
 </script>

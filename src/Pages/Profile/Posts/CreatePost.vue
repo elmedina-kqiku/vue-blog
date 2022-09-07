@@ -44,6 +44,22 @@ export default {
         ButtonVue,
         Editor,
         UploadPhoto
-},
+      },
+      // methods: {
+      //      createPost() { fetch('https://console.firebase.google.com/project/blog-cbdf6/database/blog-cbdf6-default-rtdb/data/~2F', {
+      //             method: 'POST',
+      //             headers: {
+      //                   'Content-Type': 'application/json',
+      //             },
+      //             body: JSON.stringify({
+      //             UploadPhoto: this.UploadPhoto,
+      //             title: this.title,
+      //             tags: this.tags,
+      //             category: this.category,
+      //             description: this.description
+      //       }),
+      //       });
+      // }     
+      // }
 }
 </script>

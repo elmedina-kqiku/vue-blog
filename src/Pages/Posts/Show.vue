@@ -3,23 +3,23 @@
       <div class=" grid grid-cols-1 lg:grid-cols-12 lg:max-w-full max-w-2xl gap-20 xl:gap-28 xl:gap-28 lg:pl-32 pt-12  text-sm ">
             <div class="col-span-1 lg:col-span-8 space-y-4">
 
-                  <SinglePostVue :post="item" />
+                  <SinglePostVue v-if="post" :post="post" />
 
                   <div class="flex justify-between tracking-wider ">
-                        <button>PREVIOUS</button>
-                        <button class="uppercase">Next</button>
+                        <button >PREVIOUS</button>
+                        <button >NEXT</button>
 
                   </div>
-                  <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
-                        <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
-                              Comments ({{comment.counted}})
+                  <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
+                              Comments ()
                         </p>
+                  <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
                         <div class="flex flex-row space-x-5 justify-between ml-3 pt-4">
                               <img :src="comment.user" class="mb-12 h-14 w-14" />
                               <div class="flex flex-col py-2 px-6 space-y-1 bg-white w-full">
                                     <div class="flex flex-row space-x-3">
                                           <p class="text-xs text-black font-bold">{{comment.username}}></p>
-                                          <p class="text-xs text-gray-500">{{comment.date}}</p>
+                                          <p class="text-xs text-gray-500">{{formatDate(comment.date)}}</p>
                                     </div>
 
                                     <p class="text-xs text-gray-500">
@@ -55,21 +55,17 @@
 
                   </div>
 
-                  <div class="flex flex-col space-y-3">
+                  <div class="flex flex-col space-y-3" v-if="categories">
                         <p class="uppercase text-sm font-normal tracking-wider ">Categories</p>
-                        <ul class="flex flex-col space-y-3 text-sm font-normal text-gray-500 tracking-wider">
-                              <li><a href="">Smartphones</a></li>
+                        <ul  class="flex flex-col space-y-3 text-sm font-normal text-gray-500 tracking-wider">
+                              <li v-for="category in categories" :key="category.id">{{category.name}}</li>
 
                         </ul>
                   </div>
 
                   <div class="flex flex-wrap ">
-                        <BadgeVue class=" mt-3">Smartphone</BadgeVue>
-                        <BadgeVue class="ml-3 mt-3">Nokia</BadgeVue>
-                        <BadgeVue class=" mt-3">Iphone</BadgeVue>
-                        <BadgeVue class="ml-3 mt-3">Xiaomi</BadgeVue>
-                        <BadgeVue class="mt-3">Samsung</BadgeVue>
-                        <BadgeVue class="ml-3 mt-3">Huawei</BadgeVue>
+                        <BadgeVue class=" mt-3">Hair</BadgeVue>
+                     
 
                   </div>
 
@@ -83,11 +79,11 @@ import HomePageLayoutVue from '@/layouts/HomePageLayout.vue';
 import BadgeVue from '@/components/Badge/Badge.vue';
 import SinglePostVue from '@/components/Posts/SinglePost.vue';
 import SugesstionsVue from '@/components/Posts/Sugesstions.vue';
+import axios from 'axios'
 // import { title } from 'process';
 
 export default {
       name: ["Show"],
-
       components: {
             HomePageLayoutVue,
             BadgeVue,
@@ -96,9 +92,10 @@ export default {
       },
       data() {
             return {
-                  item: {},
+                  post: null,
                   posts: [],
                   comments: [],
+                  categories: null
             }
       },
 
@@ -106,69 +103,78 @@ export default {
             this.getPosts();
             this.getItem(this.$route.params.id);
             this.getComments();
+            this.getCategories();
       },
 
       methods: {
-            async getPosts() {
-                  const posts = await fetch('https://dummyjson.com/products?limit=4')
-                        .then(res => res.json())
-                        .then(res => {
-                              return res;
-                        });
-
-                  this.posts = posts.products.map((post) => {
-                        return {
-                              id: post.id,
-                              title: post.title,
-                              image: post.thumbnail,
-                              user: require(`@/assets/images/profileicon.svg`),
-                              name: post.brand
-                        }
-                  });
+            formatDate(dateString) {
+            const date = new Date(dateString);
+                // Then specify how you want your dates to be formatted
+            return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
             },
-            async getItem(id) {
-                  const item = await fetch('https://dummyjson.com/products/' + id)
-                        .then(res => res.json())
+            // async getPosts() {
+            //       const posts = await fetch('https://ma.tenton.al/api/v1/posts')
+            //             .then(res => res.json())
+            //             .then(res => {
+            //                   return res;
+            //             });
+
+            //       this.posts = posts.data.map((post) => {
+            //             return {
+            //                   id: post.id,
+            //                   title: post.title,
+            //                   image: post.resources[0]?.preview_url,
+            //                   user: require(`@/assets/images/profileicon.svg`),
+            //                   name: "Someone"
+            //             }
+            //       });
+            // },
+            getPosts() {
+                  axios.get('https://ma.tenton.al/api/v1/posts')
+                  .then(res => {
+                        this.posts = res.data.data.slice(0,4)
+                  })
+            },
+            getCategories() {
+                  axios.get('https://ma.tenton.al/api/v1/base/post_categories')
                         .then(res => {
-                              return res;
+                              console.log(res)
+                              this.categories = res.data.data.slice(0, 4)
+                        })
+            },
+            getItem(id) {
+          
+
+                  axios.get('https://ma.tenton.al/api/v1/posts/' + id)
+                        .then(res => {
+                              console.log('posttttt',res.data.data)
+                              this.post = res.data.data
                         });
-
-                  this.item = {
-                        id: item.id,
-                        image: item.thumbnail,
-
-                        title: item.title,
-                        user: require(`@/assets/images/profileicon.svg`),
-                        name: item.brand,
-                        created_at: '22.10.2020',
-                        description: item.description,
-                        price: item.price,
-                        discountPercentage: item.discountPercentage,
-                        rating: item.rating,
-                        stock: item.stock
-                  }
+                        
 
             },
             async getComments() {
-                  const comments = await fetch('https://dummyjson.com/comments?limit=2')
+                  const id = this.$route.params.id;
+                  const comments = await fetch(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
                         .then(res => res.json())
                         .then(res => {
                               return res;
                         });
-                  this.comments = comments.comments.map((comment) => {
+                        console.log(comments,'elmedina comments')
+                  this.comments = comments.data.map((comment) => {
+
+                        console.log('elmedina comment',comment)
                         return {
                               id: comment.id,
                               user: require(`@/assets/images/profileicon.svg`),
-                              comments: comment.body,
-                              username: comment.user.username,
-                              counted: comment.total,
-                              date: '20.10.2020'
+                              comments: comment.text,
+                              username: comment.user.first_name,
+                              date: comment.created_at,
 
                         }
                   });
 
-            }
-      }
-
+            },
+      },
 }
 </script>
