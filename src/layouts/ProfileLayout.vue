@@ -7,8 +7,8 @@
                         <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
                               <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
                               <img src="@/assets/images/profileicon.svg" class="h-20 w-20" />
-                              <p class="text-base font-normal tracking-wider text-black">Carter Bator</p>
-                              <p class="text-xs font-normal text-gray-500">carter@gmail.com</p>
+                              <p class="text-base font-normal tracking-wider text-black">{{ user.name }}</p>
+                              <p class="text-xs font-normal text-gray-500">{{ user.email }}</p>
                               <p class="text-xs font-normal text-gray-500 ">+1 23 435 546</p>
                         </div>
 
@@ -75,6 +75,8 @@
 <script>
 import SearchInputVue from '@/components/Form/SearchInput.vue'
 import ButtonVue from '@/components/Buttons/Button.vue'
+import axios from 'axios';
+
 export default {
 
       name: ["ProfileLayout"],
@@ -83,6 +85,11 @@ export default {
             SearchInputVue,
             ButtonVue,
       },
+      data() {
+            return {
+                  user: []
+            }
+      },
 
       props: {
             active: {
@@ -90,10 +97,15 @@ export default {
                   type: String,
             }
       },
-
+      mounted() {
+            this.getUser();
+      },
       methods: {
-            saveData() {
-                 this.$router.replace('/login');
+            getUser(id) {
+                  axios.get('https://ma.tenton.al/api/user/' + id)
+                  .then(res => {
+                        this.posts = res.data.data
+                  })
             }
       }
 }

@@ -6,7 +6,7 @@
 
                     <p class="text-xs"> ({{ post.comments_count }}) </p>
                 </div>
-                <img :src="post.image" class="object-cover w-full h-full" />
+                <img :src="post.resources[0]?.preview_url" class="object-cover w-full h-full" />
         </router-link>
         <div class="flex flex-col space-y-3 text-xs">
             <router-link :to="'/profile/posts/' + post.id">

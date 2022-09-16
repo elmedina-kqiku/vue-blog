@@ -14,7 +14,7 @@
         <div class="flex flex-wrap flex-row">
             <img src="@/assets/images/profileicon.svg" alt='image' class="" /> 
             <p class="pl-2">
-                By <a  class="text-blue-400">Someone</a>
+                By <a  class="text-blue-400">Munir</a>
             </p>
         </div>
         <p class="text-gray-500 text-xs tracking-wider">

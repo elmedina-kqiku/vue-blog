@@ -66,6 +66,7 @@ import SinglePostVue from '@/components/Posts/SinglePost.vue'
 import SugesstionsVue from '@/components/ProfilePosts/Sugesstions.vue'
 import BadgeVue from '@/components/Badge/Badge.vue'
 import WriteComment from '@/components/Comments/WriteComment.vue'
+import axios from 'axios'
 
 export default {
       name: ["ProfileShow"],
@@ -109,45 +110,39 @@ export default {
             },
 
             async getItem(id) {
-                  const item = await fetch('https://dummyjson.com/products/' + id)
-                        .then(res => res.json())
+                  axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {
-                              return res;
+                              console.log('posttttt',res.data.data)
+                              this.post = res.data.data
                         });
-                  this.item = {
-                        id: item.id,
-                        image: item.thumbnail,
-                        title: item.title,
-                        user: require(`@/assets/images/profileicon.svg`),
-                        name: item.brand,
-                        created_at: '22.10.2020',
-                        description: item.description,
-                        price: item.price,
-                        discountPercentage: item.discountPercentage,
-                        rating: item.rating,
-                        stock: item.stock
+                        
                   }
             },
 
             async getComments() {
-                  const comments = await fetch('https://dummyjson.com/comments?limit=2')
+                  const id = this.$route.params.id;
+                  const comments = await fetch(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
                         .then(res => res.json())
                         .then(res => {
                               return res;
                         });
-                  this.comments = comments.comments.map((comment) => {
+                        console.log(comments,'elmedina comments')
+                  this.comments = comments.data.map((comment) => {
+
+                        console.log('elmedina comment',comment)
                         return {
                               id: comment.id,
                               user: require(`@/assets/images/profileicon.svg`),
-                              comments: comment.body,
-                              username: comment.user.username,
-                              counted: comment.total
+                              comments: comment.text,
+                              username: comment.user.first_name,
+                              date: comment.created_at,
+
                         }
                   });
 
             }
 
-      }
+      
 
 }
 </script>

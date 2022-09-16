@@ -142,8 +142,7 @@ export default {
                               this.categories = res.data.data.slice(0, 4)
                         })
             },
-            getItem(id) {
-          
+            async getItem(id) {
 
                   axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {

@@ -25,7 +25,7 @@
                 Posted at {{ post.created_at }}
             </p>
         </div>
-        <p class="text-gray-500">{{ post.description }}</p>
+        <p class="text-gray-500">{{ post.content }}</p>
         <p class="text-blue-400 font-medium tracking-wider ">
             <router-link :to="'/profile/posts/' + post.id">READ MORE </router-link>
         </p>
