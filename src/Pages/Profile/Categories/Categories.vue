@@ -18,8 +18,7 @@
             <Postitem v-for="item in items" :key="item.id" :post="item" />
       </div>
 
-      <Pagination class="mt-8 flex justify-end" 
-      :page-count="last_page" @pageChanged="pageChanged" />
+      <Pagination class="mt-8 flex justify-end" :page-count="last_page" @pageChanged="pageChanged" />
 
 </ProfileLayoutVue>
 </template>
@@ -55,18 +54,25 @@ export default {
       },
       mounted() {
             this.mountCategories();
-            this.getItems();
+            this.mountItems();
       },
       methods: {
 
             async mountItems() {
-                  const urlQueryParam = this.selectedCategoryId ? `category[]=${this.selectedCategoryId}` : null;
-                  await axios(`https://ma.tenton.al/api/v1/posts?${urlQueryParam}`)
+                  // if(this.selectedCategoryId){
+                  //      let test = "category[0]="+this.selectedCategoryId;
+                  // }else{
+                  //       let test = "";
+                  // }
+
+                  const urlQueryParam = this.selectedCategoryId ? `category[0]=${this.selectedCategoryId}` : '';
+
+                  await axios(`https://ma.tenton.al/api/v1/posts?${urlQueryParam}&page=${this.current_page}`)
                         .then(res => {
                               this.items = res.data.data;
-                              console.log(this.items)
                               this.last_page = res.data.pagination.last_page;
                         })
+
                   this.isLoading = false
             },
 
@@ -83,19 +89,13 @@ export default {
 
             categoryClicked(category) {
                   this.selectedCategoryId = category.id;
+                  this.current_page = 1;
                   this.mountItems();
             },
 
             pageChanged: function (pageNum) {
                   this.current_page = pageNum;
                   this.mountItems()
-            },
-
-            formatDate(dateString) {
-                  const date = new Date(dateString);
-                  return new Intl.DateTimeFormat('default', {
-                        dateStyle: 'long'
-                  }).format(date);
             },
       }
 }
