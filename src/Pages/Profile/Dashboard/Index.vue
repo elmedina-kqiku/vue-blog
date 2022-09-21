@@ -55,31 +55,20 @@ export default {
             }
       },
       mounted() {
-            // this.getItem();
-            // this.getPosts();
-            // this.getItems();
+            this.getItem();
+            this.getPosts();
+            this.getItems();
       },
 
       methods: {
 
-            formatDate(dateString) {
-            const date = new Date(dateString);
-            return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
-            },
-            
             getPosts() {
                   axios.get('https://ma.tenton.al/api/v1/posts')
                   .then(res => {
                         this.posts = res.data.data.slice(0,4)
                   })
             },
-            getCategories() {
-                  axios.get('https://ma.tenton.al/api/v1/base/post_categories')
-                        .then(res => {
-                              console.log(res)
-                              this.categories = res.data.data.slice(0, 4)
-                        })
-            },
+            
             getItem(id) {
                   axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {
@@ -89,28 +78,9 @@ export default {
                         
 
             },
-            async getComments() {
-                  const id = this.$route.params.id;
-                  const comments = await fetch(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
-                        .then(res => res.json())
-                        .then(res => {
-                              return res;
-                        });
-                        console.log(comments,'elmedina comments')
-                  this.comments = comments.data.map((comment) => {
+            
 
-                        console.log('elmedina comment',comment)
-                        return {
-                              id: comment.id,
-                              user: require(`@/assets/images/profileicon.svg`),
-                              comments: comment.text,
-                              username: comment.user.first_name,
-                              date: comment.created_at,
-
-                        }
-                  });
-
-            },
+            
       },
 
 }
