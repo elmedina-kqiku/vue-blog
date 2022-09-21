@@ -6,11 +6,20 @@ export default {
       SET_USER(state, userInfo) {
             state.user = userInfo
       },
+      
       SET_TOKEN(state, token) {
             state.token = token
             // save token on localstorage
-            localStorage.setItem('token', token)
-      }
+            localStorage.setItem('token', token)//per me vendos tokenin ne local storage
+      },
+      // logout(state) {
+      //       console.log('mutation')
+      //       console.log(state.UserInfoObj)
+      //       state.isLogin = false
+      //       state.UserInfoObj.id = ''
+      //       state.UserInfoObj.password = ''
+      //       console.log(state.isLogin)
+      //     }
       // [SET_USER_TOKEN_DATA_MUTATION](state, payload) {
       //       state.email = payload.email;
       //       state.token = payload.token;

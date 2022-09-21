@@ -1,5 +1,4 @@
 import axios from "axios";
-// import SignupValidations from "@/services/SignupValidations";
 // import { 
 //       AUTH_ACTION,
 //       LOGIN_ACTION, 
@@ -24,9 +23,25 @@ export default {
                 let token = res.data.data.token
                 commit('SET_USER', res.data.data.user)
                 commit('SET_TOKEN', token)
-
+                console.log('test', res)
                 return res
             })
+    },
+
+    signup({commit}, signupInfo) {
+        console.log(signupInfo)
+        return axios.post('https://ma.tenton.al/api/v1/register', signupInfo, {
+            headers: {
+                'x-client': '0TLi3kYazRZs6S7jv1j1jZfPy3cdMNPm9OFs8K1wTsTc2bVdPuc2HzIvfCekAarm8SozQobnzXH9k7qUjxSNcBUrjb4rOFwtAHcel7B5q9jGHTTpgXmIZdK5zeo12MP8'
+        }
+        })
+        .then(res => {
+            let token = res.data.data.token
+            commit('SET_USER', res.data.data.user)
+            commit('SET_TOKEN', token)
+            console.log('test', res)
+            return res
+        })
     },
     // async signIn({ dispatch }, credentials){
     //     let response = await axios.post('https://ma.tenton.al/api/v1/login', credentials, { headers: { 'x-client': '0TLi3kYazRZs6S7jv1j1jZfPy3cdMNPm9OFs8K1wTsTc2bVdPuc2HzIvfCekAarm8SozQobnzXH9k7qUjxSNcBUrjb4rOFwtAHcel7B5q9jGHTTpgXmIZdK5zeo12MP8' }})
@@ -35,25 +50,22 @@ export default {
 
     // },
     async attempt({ commit }, token){
-        console.log('Token', token)
         if(token) {
             localStorage.setItem('token', token)
         }
-        try {
-            let response = await axios.get('https://ma.tenton.al/api/v1/user/me',{
+
+         return  await axios.get('https://ma.tenton.al/api/v1/user/me',{
 
                 headers:{
                     'Authorization':'Bearer ' + token,
 
                 }
 
+            }).then(res=>{
+                commit('SET_USER', res.data.data);
+                return res;
             })
-            commit('SET_USER', response.data.data.user)
-        }catch(e){
-            localStorage.removeItem('token')
-            commit('SET_USER', null)
-            console.log('faild')
-        }
+    
     },
 
     //   [LOGOUT_ACTION](context) {
