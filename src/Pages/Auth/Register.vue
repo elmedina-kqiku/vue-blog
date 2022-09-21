@@ -6,13 +6,12 @@
             </template>
 
             <div class="flex justify-center">
-                  <form @submit.prevent="submit" class="flex flex-col space-y-3 w-full">
+                  <form @submit.prevent="onSignup()" class="flex flex-col space-y-3 w-full">
                         <div>
                               <label>
                                     <InputVue v-model="v$.name.$model" type="text" autocomplete="name" placeholder="Full Name"  name="name" />
                               </label>
                               <ValidationError v-for="error of v$.name.$errors" :key="error.$uid" :error="error" />
-
                         </div>
                         <div>
                               <label>
@@ -23,7 +22,6 @@
                         <div>
                               <label>
                                     <InputVue v-model="v$.password.$model"  type="password" autocomplete="name" placeholder="Password" name="password" />
-
                               </label>
                               <ValidationError v-for="error of v$.password.$errors" :key="error.$uid" :error="error" />
                         </div>
@@ -31,10 +29,10 @@
                         <label>
                               <InputVue v-model="v$.confirmPassword.$model" type="password" autocomplete="name" placeholder="Confirm Password" data-vv-as="password" />
                         </label> 
-                       <ValidationError v-for="error of v$.confirmPassword.$errors" :key="error.$uid" :error="error" />
+                        <ValidationError v-for="error of v$.confirmPassword.$errors" :key="error.$uid" :error="error" />
                         </div>
 
-                        <ButtonVue @click="saveData" type="submit">
+                        <ButtonVue type="submit">
                               Sign Up
                         </ButtonVue>
 
@@ -43,14 +41,12 @@
                               <p class="text-blue-500">
                                     <router-link to="/login">Log In</router-link>
                               </p>
-
                         </div>
                         <div class="flex justify-center text-xs text-blue-500">
                               <p>
-                                          <router-link to="/">
-                                                Continue Without
-                                                Account
-                                          </router-link>
+                                    <router-link to="/">
+                                          Continue Without Account
+                                    </router-link>
                               </p>
                         </div>
                     
@@ -95,7 +91,8 @@ export default {
                   name: '',
                   email: '',
                   password: '',
-                  confirmPassword: ''
+                  confirmPassword: '',
+                  error: '',
             }
       },
       validations() {
@@ -121,17 +118,24 @@ export default {
                   }
             }
       },
+     
       methods: {
-            async submit() {
-                  const isFormCorrect = await this.v$.$validate()
-                  if (!isFormCorrect)
-                        return;
-                       },
-            saveData() {
-                 this.$router.replace('/profile/dashboard');
-            }
-
+        
+            onSignup() {
+                  this.$store.dispatch('signup',{ first_name: this.name, last_name: 'assa', email:this.email, password: this.password, password_confirmation: this.confirmPassword })
+                        .then(res => {
+                              console.log(res)
+                              if(res.status == 201) {
+                                    this.$router.push('/profile/dashboard')
+                              } else {
+                                    alert('Sign up was not successful!')
+                              }
+                        })
+                          .catch(err => {
+                              console.log(err.response)
+                              alert('Sign up was not successful')
+                          }) 
+                 }
       }
-
 }
 </script>
