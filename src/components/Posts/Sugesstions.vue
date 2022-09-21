@@ -16,7 +16,7 @@
             </router-link>
             <div class="flex flex-row ">
                   <img src="@/assets/images/profileicon.svg" />
-                  <p class="pl-2">By <a class="text-blue-400 "> Someone </a></p>
+                  <p class="pl-2">By <a class="text-blue-400 "> Munir </a></p>
             </div>
       </div>
 </div>

@@ -15,15 +15,15 @@
                         </p>
                   <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
                         <div class="flex flex-row space-x-5 justify-between ml-3 pt-4">
-                              <img :src="comment.user" class="mb-12 h-14 w-14" />
+                              <img :src="comment?.user.resource_url ?? '@/assets/images/profileicon.svg'" class="rounded-full mb-12 h-16 w-20" />
                               <div class="flex flex-col py-2 px-6 space-y-1 bg-white w-full">
                                     <div class="flex flex-row space-x-3">
-                                          <p class="text-xs text-black font-bold">{{comment.username}}></p>
-                                          <p class="text-xs text-gray-500">{{formatDate(comment.date)}}</p>
+                                          <p class="text-xs text-black font-bold">{{comment.user.first_name}}></p>
+                                          <p class="text-xs text-gray-500">{{formatDate(comment.created_at)}}</p>
                                     </div>
 
                                     <p class="text-xs text-gray-500">
-                                          {{comment.comments}}
+                                          {{comment.text}}
                                     </p>
                                     <p class="text-xs text-blue-500 font-bold flex justify-end">
                                           <a href="">Reply</a>
@@ -107,12 +107,7 @@ export default {
       },
 
       methods: {
-            formatDate(dateString) {
-            const date = new Date(dateString);
-                // Then specify how you want your dates to be formatted
-            return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
-            },
-        
+            
             getPosts() {
                   axios.get('https://ma.tenton.al/api/v1/posts')
                   .then(res => {
@@ -138,25 +133,15 @@ export default {
             },
             async getComments() {
                   const id = this.$route.params.id;
-                  const comments = await fetch(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
-                        .then(res => res.json())
+                  await axios.get(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
                         .then(res => {
-                              return res;
-                        });
-                        console.log(comments,'elmedina comments')
-                  this.comments = comments.data.map((comment) => {
-
-                        console.log('elmedina comment',comment)
-                        return {
-                              id: comment.id,
-                              user: require(`@/assets/images/profileicon.svg`),
-                              comments: comment.text,
-                              username: comment.user.first_name,
-                              date: comment.created_at,
-
-                        }
+                        this.comments = res.data.data
                   });
-
+       },
+            formatDate(dateString) {
+                  const date = new Date(dateString);
+                  // Then specify how you want your dates to be formatted
+                  return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
             },
       },
 }

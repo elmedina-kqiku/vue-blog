@@ -1,7 +1,6 @@
 <template>
 <HomePageLayoutVue>
   
-
       <div class="max-w-6xl mx-auto px-4">
             <nav class="pt-14">
                   <ul class="flex flex-col lg:flex-row border-b border-gray-200 lg:space-x-5 text-sm font-medium tracking-wider text-gray-400 ">
@@ -12,17 +11,13 @@
                               </a>
                         </li>
                   </ul>
-
             </nav>
             <div>
-
                 <Base-spinner v-if="isLoading"></Base-spinner>
-
             </div>
+
             <div class="pt-8 pl-0 grid grid-cols-2 lg:grid-cols-4 gap-6">
-
                   <Postitem v-for="item in items" :key="item.id" :post="item" />
-
             </div>
 
             <PaginationVue
@@ -36,11 +31,9 @@
 <script>
 import HomePageLayoutVue from "@/layouts/HomePageLayout.vue";
 import Postitem from "@/components/Posts/Postitem.vue";
-import axios from "axios";
 import PaginationVue from "@/components/Pagination/Pagination.vue";
 import BaseSpinner from '@/components/BaseSpinner.vue'
-
-
+import axios from "axios";
 
 export default {
       name: ["HomePage"],
@@ -73,10 +66,7 @@ export default {
       },
 
       methods: {
-            // searchData(){
-            //       axios.get(`https://ma.tenton.al/api/v1/posts?search=${this.searchInput}`)
-              
-            // },
+            
             async mountItems() {
                   const urlQueryParam = this.selectedCategoryId ? `category[0]=${this.selectedCategoryId}` : '';
                   await axios(`https://ma.tenton.al/api/v1/posts?${urlQueryParam}&page=${this.current_page}`)
