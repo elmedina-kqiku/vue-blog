@@ -24,7 +24,6 @@
                   </div>
             </div>
       </div>
-
 </ProfileLayoutVue>
 </template>
 
@@ -34,6 +33,7 @@ import MostCommentsProfile from '@/components/ProfilePosts/MostCommentsProfile.v
 import LatestPostProfile from '@/components/ProfilePosts/LatestPostProfile.vue';
 import PostPerCategoryProfile from '@/components/ProfilePosts/PostPerCategoryProfile.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
+import axios from 'axios';
 
 export default {
       name: ["ProfileDashboardIndex"],
@@ -51,79 +51,68 @@ export default {
                   item: {},
                   posts: [],
                   items: [],
+                  user:null,
             }
       },
       mounted() {
-            this.getItem();
-            this.getPosts();
-            this.getItems();
+            // this.getItem();
+            // this.getPosts();
+            // this.getItems();
       },
 
       methods: {
-            async getItem() {
-                  const item = await fetch('https://dummyjson.com/products/1')
-                        .then(res => res.json())
-                        .then(res => {
-                              return res;
-                        });
 
-                  this.item = {
-                        id: item.id,
-                        image: item.thumbnail,
-                        comments_count: item.stock,
-                        title: item.title,
-                        user: require(`@/assets/images/profileicon.svg`),
-                        name: item.brand,
-                        created_at: "Nov, 25, 2021",
-                        description: item.description
-                  }
+            formatDate(dateString) {
+            const date = new Date(dateString);
+            return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
             },
-            async getPosts() {
-                  const posts = await fetch('https://dummyjson.com/products?limit=4')
+            
+            getPosts() {
+                  axios.get('https://ma.tenton.al/api/v1/posts')
+                  .then(res => {
+                        this.posts = res.data.data.slice(0,4)
+                  })
+            },
+            getCategories() {
+                  axios.get('https://ma.tenton.al/api/v1/base/post_categories')
+                        .then(res => {
+                              console.log(res)
+                              this.categories = res.data.data.slice(0, 4)
+                        })
+            },
+            getItem(id) {
+                  axios.get('https://ma.tenton.al/api/v1/posts/' + id)
+                        .then(res => {
+                              console.log('posttttt',res.data.data)
+                              this.post = res.data.data
+                        });
+                        
+
+            },
+            async getComments() {
+                  const id = this.$route.params.id;
+                  const comments = await fetch(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
                         .then(res => res.json())
                         .then(res => {
                               return res;
                         });
+                        console.log(comments,'elmedina comments')
+                  this.comments = comments.data.map((comment) => {
 
-                  this.posts = posts.products.map((post) => {
+                        console.log('elmedina comment',comment)
                         return {
-                              id: post.id,
-                              title: post.title,
-                              image: post.thumbnail,
-                              comments_count: post.stock,
+                              id: comment.id,
                               user: require(`@/assets/images/profileicon.svg`),
-                              name: post.brand,
-                              created_at: "Nov, 25, 2021",
+                              comments: comment.text,
+                              username: comment.user.first_name,
+                              date: comment.created_at,
+
                         }
                   });
+
             },
-            async getItems() {
-                  const items = await fetch('https://dummyjson.com/products?limit=4')
-                        .then(res => res.json())
-                        .then(res => {
-                              return res;
-                        });
-
-                  this.items = items.products.map((item) => {
-                        return {
-                              id: item.id,
-                              title: item.title,
-                              created_at: "Nov, 25, 2021",
-                              description: item.description,
-                              comments_count: item.stock,
-                              category: item.category,
-                              posts_count: "3",
-                              image: item.thumbnail,
-                              user: require(`@/assets/images/profileicon.svg`),
-                              name: item.brand
-
-
-                            
-                        }
-                  });
-            },
-
-      }
+      },
 
 }
+
 </script>

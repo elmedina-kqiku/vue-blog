@@ -112,23 +112,7 @@ export default {
                 // Then specify how you want your dates to be formatted
             return new Intl.DateTimeFormat('default', {dateStyle: 'long'}).format(date);
             },
-            // async getPosts() {
-            //       const posts = await fetch('https://ma.tenton.al/api/v1/posts')
-            //             .then(res => res.json())
-            //             .then(res => {
-            //                   return res;
-            //             });
-
-            //       this.posts = posts.data.map((post) => {
-            //             return {
-            //                   id: post.id,
-            //                   title: post.title,
-            //                   image: post.resources[0]?.preview_url,
-            //                   user: require(`@/assets/images/profileicon.svg`),
-            //                   name: "Someone"
-            //             }
-            //       });
-            // },
+        
             getPosts() {
                   axios.get('https://ma.tenton.al/api/v1/posts')
                   .then(res => {
