@@ -4,12 +4,11 @@
             <div class="w-64 flex-shrink-0 h-screen  bg-blue-100 flex flex-col justify-between bg-white p-10 ">
 
                   <div class="">
-                        <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200">
+                        <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200 ">
                               <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
-                              <img src="@/assets/images/profileicon.svg" class="h-20 w-20" />
-                              <p class="text-base font-normal tracking-wider text-black">{{ user.name }}</p>
-                              <p class="text-xs font-normal text-gray-500">{{ user.email }}</p>
-                              <p class="text-xs font-normal text-gray-500 ">+1 23 435 546</p>
+                              <img :src="user?.resource_url ?? '@/assets/images/profileicon.svg'" class="h-20 w-20 rounded-full" />
+                              <p class="text-base font-normal tracking-wider text-black">{{ user?.first_name }} {{ user?.last_name }}</p>
+                              <p class="text-xs font-normal text-gray-500">{{ user?.email }}</p>
                         </div>
 
                         <ul class="pt-9 flex flex-col h-full">
@@ -41,7 +40,7 @@
 
                   <div class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-auto">
                         <img src="@/assets/images/logouticon.svg" alt="">
-                        <button @click="saveData">Log Out</button>
+                        <button >Log Out</button>
 
                   </div>
             </div>
@@ -75,37 +74,36 @@
 <script>
 import SearchInputVue from '@/components/Form/SearchInput.vue'
 import ButtonVue from '@/components/Buttons/Button.vue'
-import axios from 'axios';
-
 export default {
 
       name: ["ProfileLayout"],
+
+      props:["active"],
 
       components: {
             SearchInputVue,
             ButtonVue,
       },
+
       data() {
             return {
-                  user: []
+                  user: null
             }
       },
 
-      props: {
-            active: {
-                  default: null,
-                  type: String,
-            }
-      },
-      mounted() {
+      mounted(){
             this.getUser();
       },
+
       methods: {
-            getUser(id) {
-                  axios.get('https://ma.tenton.al/api/user/' + id)
-                  .then(res => {
-                        this.posts = res.data.data
-                  })
+            getUser() {
+                  const token = localStorage.getItem('token');
+
+                  this.$store.dispatch('attempt', token)
+                  .then((res) => {
+                        this.user = res.data.data;
+                  });
+
             }
       }
 }
