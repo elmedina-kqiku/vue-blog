@@ -20,7 +20,7 @@
             <div class="">
                   <p class="text-base font-normal tracking-wider text-blue mb-4">POST PER CATEGORY</p>
                   <div class="grid grid-cols-2 lg:grid-cols-4 space-x-8">
-                        <PostPerCategoryProfile v-for="item in items" :key="item.id" :post="item" />
+                        <!-- <PostPerCategoryProfile v-for="item in items" :key="item.id" :post="item" /> -->
                   </div>
             </div>
       </div>
@@ -31,7 +31,7 @@
 import ProfileLayoutVue from '@/layouts/ProfileLayout.vue';
 import MostCommentsProfile from '@/components/ProfilePosts/MostCommentsProfile.vue';
 import LatestPostProfile from '@/components/ProfilePosts/LatestPostProfile.vue';
-import PostPerCategoryProfile from '@/components/ProfilePosts/PostPerCategoryProfile.vue';
+// import PostPerCategoryProfile from '@/components/ProfilePosts/PostPerCategoryProfile.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
 import axios from 'axios';
 
@@ -42,7 +42,7 @@ export default {
             ProfileLayoutVue,
             MostCommentsProfile,
             LatestPostProfile,
-            PostPerCategoryProfile,
+            // PostPerCategoryProfile,
             Pagination
       },
       data() {
@@ -50,14 +50,16 @@ export default {
 
                   item: {},
                   posts: [],
-                  items: [],
-                  user:null,
+                  // items: [],
+                  // user:null,
             }
       },
       mounted() {
             this.getItem();
             this.getPosts();
-            this.getItems();
+
+            //get posts per category
+            // this.getItems();
       },
 
       methods: {
@@ -68,7 +70,7 @@ export default {
                         this.posts = res.data.data.slice(0,4)
                   })
             },
-            
+            // get 1 post in most comments photo in dashboard ???
             getItem(id) {
                   axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {
