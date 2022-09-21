@@ -7,39 +7,30 @@
                     <img class="h-9" src="@/assets/images/blog.svg" />
                  </router-link>
 
-                <form action="" class=" ">
-
-                    <label class="">
-                        <SearchInputVue type="search" name="Search Posts" placeholder="Search Posts" />
-                    </label>
-
-                </form>
-
+                <SearchInputVue type="search" name="Search Posts" placeholder="Search Posts" />
             </div>
+
             <div class="flex flex-col lg:flex-wrap space-y-3 lg:space-y-0">
-                <form action="" class="space-x-2">
-                        <ButtonVue color="white" url="/login">
+                <form  action="" class="space-x-2">
+                    <ButtonVue color="white" url="/login">
                        LOG IN 
-                        </ButtonVue>
-                    
+                    </ButtonVue>
                     <ButtonVue color="blue" url="/register">                       
-                            SIGN UP                        
+                        SIGN UP                        
                     </ButtonVue>
                 </form>
             </div>
             <router-view></router-view>
         </div>
-
-
         <div>
             <slot />
         </div>
-
     </div>
 </template>
 <script>
 import ButtonVue from '@/components/Buttons/Button.vue'
 import SearchInputVue from '@/components/Form/SearchInput.vue'
+
 
 export default {
     name: ["HomePageLayout"],
@@ -47,5 +38,9 @@ export default {
         ButtonVue,
         SearchInputVue,
     },
+
+    methods: {
+       
+    }
 }
 </script>

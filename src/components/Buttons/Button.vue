@@ -1,7 +1,7 @@
 <template>
-    <router-link :class="getClasses" :to="url">
+    <button :class="getClasses" :to="url">
         <slot />
-    </router-link>
+    </button>
 </template>
 <script>
 export default {

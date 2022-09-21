@@ -8,10 +8,11 @@
                 <p class="text-xs"> ({{ post.comments_count }}) </p>
             </div>
             <template v-if="post.resources[0]?.preview_url">
-                <img :src="post.resources[0]?.preview_url" alt="image" class=" w-full h-40 object-cover">
+                <img :src="post.resources[0]?.preview_url" alt="image" class=" rounded-lg w-full h-40 object-cover">
             </template>
             <template v-else>
-                <div class="w-full h-40 bg-gray-500">
+                <div class="w-60 h-40  ">
+                    <img class="object-cover w-full rounded-lg h-full" src="@/assets/images/defaultImage.svg" alt=""/>
                 </div>
             </template>
         </div>

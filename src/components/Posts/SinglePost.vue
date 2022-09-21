@@ -4,9 +4,10 @@
             <img :src="post.resources[0]?.preview_url" alt="image" class="w-full object-cover h-96" />
         </template>
         <template v-else>
-            <div class="w-full h-96 bg-gray-500">
-            </div>
-        </template>
+                <div class="w-[794px] h-96 ">
+                    <img  src="@/assets/images/defaultImage.svg" alt="" class="w-[794px] object-cover h-full "/>
+                </div>
+            </template>
     <p class="text-black font-bold uppercase">
       {{post.title}}
     </p>
