@@ -2,57 +2,75 @@
 <ProfileLayoutVue>
       <div class=" grid grid-cols-1 lg:grid-cols-3 lg:max-w-full max-w-2xl gap-20 gap-20 lg:gap-40  pt-12  text-sm ">
             <div class="col-span-1 lg:col-span-2 space-y-4">
-                  <SinglePostVue :post="item" />
+                  <SinglePostVue :post="post" />
                   <div class="flex justify-between tracking-wider ">
                         <button>PREVIOUS</button>
                         <button class="uppercase">Next</button>
                   </div>
+                  <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
+                        Comments ()
+                  </p>
+                  <div v-if="comments">
+                        <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
 
-                  <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
-                        <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
-                              Comments ({{comment.counted}})
-                        </p>
-                        <div class="flex flex-row space-x-5 justify-between ml-3 pt-8">
-                              <img :src="comment.user" class="mb-12 h-14 w-14" />
-                              <div class="flex flex-col py-2 px-6 space-y-1 bg-white w-full">
-                                    <div class="flex flex-row space-x-3">
-                                          <p class="text-xs text-black font-bold">{{comment.username}}></p>
-                                          <p class="text-xs text-gray-500">21 Oct 2021 16:21</p>
+                              <div class="flex flex-row space-x-5 justify-between ml-3 pt-8">
+                                    <img :src="comment?.user.resource_url ?? '@/assets/images/profileicon.svg'" class="mb-12 h-14 w-14" />
+                                    <div class="flex flex-col py-2 px-6 space-y-1 bg-white w-full">
+                                          <div class="flex flex-row space-x-3">
+                                                <p class="text-xs text-black font-bold">{{comment.user.first_name}}></p>
+                                                <p class="text-xs text-gray-500">{{formatDate(comment.created_at)}}</p>
+                                          </div>
+                                          
+
+                                          <div class="comment-reply flex my-1 mx-2 bg-gray-100 py-1 px-2 rounded-sm" v-if="comment && comment.replyable">
+                                                <div class="flex icon items-center justify-center mr-1 transform rotate -rotate-90">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-6 6m0 0l-6-6m6 6V9a6 6 0 0112 0v3" />
+                                                      </svg>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                      <p class="font-semibold">{{comment.replyable.user.first_name + ' ' + comment.replyable.user.last_name}}</p>
+                                                      <p>{{ comment.replyable.text }}</p>
+                                                </div>
+                                          </div>
+
+                                          <p class="text-xs text-gray-500">
+                                                {{comment.text}}
+                                          </p>
+
+                                          <div class="w-16" v-if="comment && comment.resources.length >= 1">
+                                                <img class="w-full h-full" :src="comment?.resources[0]?.preview_url" alt="comment image">
+                                          </div>
+
+                                          <p class="text-xs text-blue-500  font-bold flex justify-end">
+                                                <a href="">Reply</a>
+                                          </p>
                                     </div>
-
-                                    <p class="text-xs text-gray-500">
-                                          {{comment.comments}}
-                                    </p>
-                                    <p class="text-xs text-blue-500  font-bold flex justify-end">
-                                          <a href="">Reply</a>
-                                    </p>
                               </div>
-                        </div>
+                              </div>
                   </div>
-                 <WriteComment />
+                  <div class="w-full py-2 flex items-center justify-center">
+                        <button @click="loadMore" class="px-3 py-1 bg-transparent border border-blue-400 rounded-sm text-blue-400 uppercase">Load more</button>
+                  </div>
+                  <WriteComment />
             </div>
             <div class="col-span-1 lg:col-span-1  flex flex-col space-y-14">
                   <div class="flex flex-col space-y-3">
                         <p class="uppercase text-sm font-normal ">More like this</p>
                         <SugesstionsVue v-for="post in posts" :key="post.id" :post="post" />
                   </div>
-                  <div class="flex flex-col space-y-3">
+                  <div class="flex flex-col space-y-3" v-if="categories">
                         <p class="uppercase text-sm font-normal tracking-wider ">Categories</p>
                         <ul class="flex flex-col space-y-3 text-sm font-normal text-gray-500 tracking-wider">
-                              <li><a href="">Food</a></li>
-                              <li><a href="">Nature</a></li>
-                              <li><a href="">Technology</a></li>
-                              <li><a href="">Health</a></li>
+                              <li v-for="category in categories" :key="category.id">{{category.name}}</li>
+
                         </ul>
 
                   </div>
                   <div class="flex flex-wrap">
-                        <BadgeVue class="mt-3">Smartphone</BadgeVue>
-                        <BadgeVue class="ml-3 mt-3">Nokia</BadgeVue>
-                        <BadgeVue class="mt-3">Samsung</BadgeVue>
-                        <BadgeVue class="ml-3 mt-3">Iphone</BadgeVue>
-                        <BadgeVue class="mt-3">Xiaomi</BadgeVue>
-                        <BadgeVue class="ml-3 mt-3">Huawei</BadgeVue>
+                        <BadgeVue class="mt-3">Hair</BadgeVue>
+                        <BadgeVue class="ml-3 mt-3">Nails</BadgeVue>
+                        <BadgeVue class="mt-3">Make Up</BadgeVue>
                   </div>
             </div>
       </div>
@@ -62,7 +80,7 @@
 
 <script>
 import ProfileLayoutVue from '@/layouts/ProfileLayout.vue'
-import SinglePostVue from '@/components/Posts/SinglePost.vue'
+import SinglePostVue from '@/components/ProfilePosts/SinglePost.vue'
 import SugesstionsVue from '@/components/ProfilePosts/Sugesstions.vue'
 import BadgeVue from '@/components/Badge/Badge.vue'
 import WriteComment from '@/components/Comments/WriteComment.vue'
@@ -71,78 +89,83 @@ import axios from 'axios'
 export default {
       name: ["ProfileShow"],
       components: {
-    ProfileLayoutVue,
-    SinglePostVue,
-    SugesstionsVue,
-    BadgeVue,
-    WriteComment
-},
+            ProfileLayoutVue,
+            SinglePostVue,
+            SugesstionsVue,
+            BadgeVue,
+            WriteComment
+      },
       data() {
             return {
-                  item: {},
+                  post: null,
                   posts: [],
-                  comments: []
+                  postId: null,
+                  comments: [],
+                  categories: null,
+                  commentsCurrentPage: 1,
+                  commentsLastPage: null
             }
 
       },
       mounted() {
+            this.postId = this.$route.params.id;
             this.getPosts();
             this.getItem(this.$route.params.id);
             this.getComments();
+            this.getCategories();
       },
       methods: {
-            async getPosts() {
-                  const posts = await fetch('https://ma.tenton.al/api/v1/posts')
-                        .then(res => res.json())
-                        .then(res => {
-                              return res;
-                        });
-
-                  this.posts = posts.products.map((post) => {
-                        return {
-                              id: post.id,
-                              title: post.title,
-                              image: post.thumbnail,
-                              user: require('@/assets/images/profileicon.svg'),
-                              name: post.brand
-                        }
-                  });
-            },
 
             async getItem(id) {
                   axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {
-                              console.log('posttttt',res.data.data)
+                              console.log('posttttt', res.data.data)
                               this.post = res.data.data
-                        });
-                        
-                  }
+                        })
+
+            },
+            async getPosts() {
+                  axios.get(`https://ma.tenton.al/api/v1/posts?related_to=${this.postId}`)
+                        .then(res => {
+                              this.posts = res.data.data.slice(0, 4)
+                        })
+            },
+
+            getCategories() {
+                  axios.get('https://ma.tenton.al/api/v1/base/post_categories')
+                        .then(res => {
+                              console.log(res)
+                              this.categories = res.data.data.slice(0, 4)
+                        })
             },
 
             async getComments() {
                   const id = this.$route.params.id;
-                  const comments = await fetch(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
-                        .then(res => res.json())
+                  await axios.get(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
                         .then(res => {
-                              return res;
+                              this.comments = res.data.data;
+                              this.commentsLastPage = res.data.pagination.last_page
                         });
-                        console.log(comments,'elmedina comments')
-                  this.comments = comments.data.map((comment) => {
 
-                        console.log('elmedina comment',comment)
-                        return {
-                              id: comment.id,
-                              user: require(`@/assets/images/profileicon.svg`),
-                              comments: comment.text,
-                              username: comment.user.first_name,
-                              date: comment.created_at,
-
-                        }
-                  });
-
+            },
+            formatDate(dateString) {
+                  const date = new Date(dateString);
+                  // Then specify how you want your dates to be formatted
+                  return new Intl.DateTimeFormat('default', {
+                        dateStyle: 'long'
+                  }).format(date);
+            },
+            loadMore() {
+                  const id = this.$route.params.id;
+                  if(this.commentsCurrentPage < this.commentsLastPage) {
+                        this.commentsCurrentPage++
+                        axios.get(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages?page=${this.commentsCurrentPage}`)
+                              .then(res => {
+                                    console.log(res)
+                                    this.comments = this.comments.concat(res.data.data)
+                              })
+                  }
             }
-
-      
-
+      }
 }
 </script>
