@@ -40,7 +40,7 @@
 
                   <div class="flex flex-row space-x-6 text-xs font-normal tracking-wider mt-auto">
                         <img src="@/assets/images/logouticon.svg" alt="">
-                        <button >Log Out</button>
+                        <button @click="logout">Log Out</button>
 
                   </div>
             </div>
@@ -59,9 +59,8 @@
                               <img src="@/assets/images/notificationicon.svg" alt="" class="" />
                         </div>
 
-                        <router-link to="/profile/posts/createpost">
-                              <ButtonVue color="blue">CREATE POST</ButtonVue>
-                        </router-link>
+                              <RouterButton url="/profile/posts/createpost" color="blue">CREATE POST</RouterButton>
+                  
                   </div>
             </div>
             <div class="pt-11">
@@ -73,7 +72,7 @@
 
 <script>
 import SearchInputVue from '@/components/Form/SearchInput.vue'
-import ButtonVue from '@/components/Buttons/Button.vue'
+import RouterButton from '@/components/Buttons/RouterButton.vue';
 export default {
 
       name: ["ProfileLayout"],
@@ -81,9 +80,9 @@ export default {
       props:["active"],
 
       components: {
-            SearchInputVue,
-            ButtonVue,
-      },
+    SearchInputVue,
+    RouterButton
+},
 
       data() {
             return {
@@ -104,6 +103,10 @@ export default {
                         this.user = res.data.data;
                   });
 
+            },
+            logout(){
+                  this.$store.commit('LOGOUT')
+                  this.$router.push('/login')
             }
       }
 }
