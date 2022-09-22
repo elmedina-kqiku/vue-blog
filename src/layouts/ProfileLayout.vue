@@ -6,7 +6,13 @@
                   <div class="">
                         <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200 ">
                               <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
-                              <img :src="user?.resource_url ?? '@/assets/images/profileicon.svg'" class="h-20 w-20 rounded-full" />
+                              <div v-if="user?.resource_url">
+                                    <img :src="user?.resource_url" class="h-20 w-20 rounded-full" />
+                              </div>
+                              <div v-else>
+                                    <img src="@/assets/images/profileicon.svg" class="h-20 w-20 rounded-full" />
+
+                               </div>
                               <p class="text-base font-normal tracking-wider text-black">{{ user?.first_name }} {{ user?.last_name }}</p>
                               <p class="text-xs font-normal text-gray-500">{{ user?.email }}</p>
                         </div>
