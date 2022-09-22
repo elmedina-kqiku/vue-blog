@@ -12,6 +12,10 @@ export default {
             // save token on localstorage
             localStorage.setItem('token', token)//per me vendos tokenin ne local storage
       },
+      LOGOUT(state) {
+            state.user = null
+            localStorage.removeItem('token')
+      }
       // logout(state) {
       //       console.log('mutation')
       //       console.log(state.UserInfoObj)
