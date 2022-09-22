@@ -42,12 +42,15 @@ export default {
             categories: null
         }
     },
+
     props: [
         "post"
     ],
+
     mounted() {
         this.getCategories();
     },
+    
     methods: {
         formatDate(dateString) {
             const date = new Date(dateString);

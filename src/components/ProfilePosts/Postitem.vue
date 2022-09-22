@@ -51,7 +51,7 @@ export default {
         showItem(id) {
             console.log(id);
             this.$router.push({
-                path:`/posts/${id}`
+                path:`/profile/posts/${id}`
             })
         }
     }

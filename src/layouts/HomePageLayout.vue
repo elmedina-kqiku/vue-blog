@@ -12,12 +12,12 @@
 
             <div class="flex flex-col lg:flex-wrap space-y-3 lg:space-y-0">
                 <form  action="" class="space-x-2">
-                    <ButtonVue color="white" url="/login">
+                    <RouterButton color="white" url="/login">
                        LOG IN 
-                    </ButtonVue>
-                    <ButtonVue color="blue" url="/register">                       
+                    </RouterButton>
+                    <RouterButton color="blue" url="/register">                       
                         SIGN UP                        
-                    </ButtonVue>
+                    </RouterButton>
                 </form>
             </div>
             <router-view></router-view>
@@ -28,16 +28,16 @@
     </div>
 </template>
 <script>
-import ButtonVue from '@/components/Buttons/Button.vue'
 import SearchInputVue from '@/components/Form/SearchInput.vue'
+import RouterButton from '@/components/Buttons/RouterButton.vue';
 
 
 export default {
     name: ["HomePageLayout"],
     components: {
-        ButtonVue,
-        SearchInputVue,
-    },
+    SearchInputVue,
+    RouterButton,
+},
 
     methods: {
        
