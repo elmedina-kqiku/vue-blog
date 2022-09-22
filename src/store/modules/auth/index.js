@@ -10,6 +10,8 @@ export default {
                   token: '',
                   user: null,
                   autoLogout: false,
+                  commentsCurrentPage: 1,
+                  commentsLastPage: null
             };
       },
       
