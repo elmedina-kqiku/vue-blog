@@ -3,7 +3,7 @@
       <div class=" grid grid-cols-1 lg:grid-cols-12 lg:max-w-full max-w-2xl gap-20 xl:gap-28 xl:gap-28 lg:pl-32 pt-12  text-sm ">
             <div class="col-span-1 lg:col-span-8 space-y-4">
 
-                  <SinglePostVue v-if="post" :post="post" />
+                  <SinglePostVue :post="post" />
 
                   <div class="flex justify-between tracking-wider ">
                         <button >PREVIOUS</button>
@@ -80,26 +80,27 @@ import BadgeVue from '@/components/Badge/Badge.vue';
 import SinglePostVue from '@/components/Posts/SinglePost.vue';
 import SugesstionsVue from '@/components/Posts/Sugesstions.vue';
 import axios from 'axios'
-// import { title } from 'process';
 
 export default {
       name: ["Show"],
       components: {
             HomePageLayoutVue,
-            BadgeVue,
             SinglePostVue,
             SugesstionsVue,
+            BadgeVue,
       },
       data() {
             return {
                   post: null,
                   posts: [],
+                  postId:null,
                   comments: [],
                   categories: null
             }
       },
 
       mounted() {
+            this.postId = this.$route.params.id;
             this.getPosts();
             this.getItem(this.$route.params.id);
             this.getComments();
@@ -107,13 +108,21 @@ export default {
       },
 
       methods: {
-            
+            async getItem(id) {
+                  axios.get('https://ma.tenton.al/api/v1/posts/' + id)
+                        .then(res => {
+                              console.log('posttttt',res.data.data)
+                              this.post = res.data.data
+                        });
+            },
+
             getPosts() {
-                  axios.get('https://ma.tenton.al/api/v1/posts')
+                  axios.get(`https://ma.tenton.al/api/v1/posts?related_to=${this.postId}`)
                   .then(res => {
                         this.posts = res.data.data.slice(0,4)
                   })
             },
+            
             getCategories() {
                   axios.get('https://ma.tenton.al/api/v1/base/post_categories')
                         .then(res => {
@@ -121,23 +130,14 @@ export default {
                               this.categories = res.data.data.slice(0, 4)
                         })
             },
-            async getItem(id) {
-
-                  axios.get('https://ma.tenton.al/api/v1/posts/' + id)
-                        .then(res => {
-                              console.log('posttttt',res.data.data)
-                              this.post = res.data.data
-                        });
-                        
-
-            },
+            
             async getComments() {
                   const id = this.$route.params.id;
                   await axios.get(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages`)
                         .then(res => {
                         this.comments = res.data.data
                   });
-       },
+            },
             formatDate(dateString) {
                   const date = new Date(dateString);
                   // Then specify how you want your dates to be formatted
