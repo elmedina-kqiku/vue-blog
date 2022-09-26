@@ -13,7 +13,7 @@
                         <th> </th>
                   </tr>
             </thead>
-            <tbody class="bg-white">
+            <!-- <tbody class="bg-white">
                   <tr v-for="post in posts" :key="post.id" :post="post" class="ml-6">
                         <td class="p-3 text-sm text-gray-900 font-normal flex flex-row">
                               <img :src="post.image" alt="" class="w-16 h-10" />
@@ -48,7 +48,7 @@
                         </td>
 
                   </tr>
-            </tbody>
+            </tbody> -->
       </table>
 
       <PaginationVue />
@@ -66,49 +66,49 @@ export default {
       },
       data() {
             return {
-                  detailsAreVisible: false,
-                  posts: []
+                  // detailsAreVisible: false,
+                  // posts: []
             }
       },
 
       mounted() {
-            this.getPosts();
-            console.log('test')
-            this.getApi();
+            // this.getPosts();
+            // console.log('test')
+            // this.getApi();
       },
       methods: {
-            toggleDetails() {
-                  this.detailsAreVisible = !this.detailsAreVisible;
-            },
+            // toggleDetails() {
+            //       this.detailsAreVisible = !this.detailsAreVisible;
+            // },
 
-            async getPosts() {
-                  const posts = await fetch('https://ma.tenton.al/api/v1/posts')
-                        .then(res => res.json())
-                        .then(res => {
-                              return res;
-                        });
+            // async getPosts() {
+            //       const posts = await fetch('https://ma.tenton.al/api/v1/posts')
+            //             .then(res => res.json())
+            //             .then(res => {
+            //                   return res;
+            //             });
 
-                  this.posts = posts.products.map((post) => {
-                        return {
-                              id: post.id,
-                              image: post.thumbnail,
-                              title: post.title,
-                              comments: post.stock,
-                              category: post.category,
-                              user: require('@/assets/images/profileicon/profileicon1.svg'),
-                              posted_by: post.brand,
-                              posted_at: 'Nov, 21, 2021 10:23PM',
-                              last_updated: 'Nov, 21, 2021 10:23PM',
-                        }
-                  });
+            //       this.posts = posts.products.map((post) => {
+            //             return {
+            //                   id: post.id,
+            //                   image: post.thumbnail,
+            //                   title: post.title,
+            //                   comments: post.stock,
+            //                   category: post.category,
+            //                   user: require('@/assets/images/profileicon/profileicon1.svg'),
+            //                   posted_by: post.brand,
+            //                   posted_at: 'Nov, 21, 2021 10:23PM',
+            //                   last_updated: 'Nov, 21, 2021 10:23PM',
+            //             }
+            //       });
 
-            },
-            getApi(){
-            const api = fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population').then(res=>{
-                  console.log(res.data.data)
-            });
-            return api;
-            }
+            // },
+            // getApi(){
+            // const api = fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population').then(res=>{
+            //       console.log(res.data.data)
+            // });
+            // return api;
+            // }
 
 
       }
