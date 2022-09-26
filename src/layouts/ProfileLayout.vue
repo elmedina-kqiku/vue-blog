@@ -5,7 +5,9 @@
 
                   <div class="">
                         <div class="flex flex-col shrink-0 items-center space-y-3 pb-5 border-b border-gray-200 ">
+                              <router-link to="/profile/categories"> 
                               <img class="h-9 mb-9" src="@/assets/images/blog.svg" />
+                              </router-link>
                               <div v-if="user?.resource_url">
                                     <img :src="user?.resource_url" class="h-20 w-20 rounded-full" />
                               </div>
