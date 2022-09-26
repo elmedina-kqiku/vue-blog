@@ -14,7 +14,8 @@
                         <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
 
                               <div class="flex flex-row space-x-5 justify-between ml-3 pt-8">
-                                    <img :src="comment?.user.resource_url ?? '@/assets/images/profileicon.svg'" class="mb-12 h-14 w-14" />
+                                    <img v-if="getCommentUserImage(comment)" :src="getCommentUserImage(comment)" class="mb-12 h-14 w-14" />
+                                    <img v-if="!getCommentUserImage(comment)" src="@/assets/images/profileicon.svg" class="mb-12 h-14 w-14" />
                                     <div class="flex flex-col py-2 px-6 space-y-1 bg-white w-full">
                                           <div class="flex flex-row space-x-3">
                                                 <p class="text-xs text-black font-bold">{{comment.user.first_name}}></p>
@@ -52,7 +53,23 @@
                   <div class="w-full py-2 flex items-center justify-center">
                         <button @click="loadMore" class="px-3 py-1 bg-transparent border border-blue-400 rounded-sm text-blue-400 uppercase">Load more</button>
                   </div>
-                  <WriteComment />
+
+                  
+                  <div>
+                      
+                        <div class="send-comment flex flex-row justify-between bg-gray-200 px-5 py-5">
+                        <img src="@/assets/images/profileicon/profileicon.svg" alt="" class="mb-12 h-14 w-14">
+                        <div class="flex flex-col justify-between bg-white w-full ml-6 py-3 px-6">
+                              <textarea name="sendComment" v-model="commentToSend" rows="3"></textarea>
+                              <div class="flex flex-row justify-end items-center">
+                                    <img src="@/assets/images/alternate_email_icon.svg" alt="" class="ml-5 -h-4 w-4">
+                                    <img src="@/assets/images/emojiicon.svg" alt="" class="ml-5 h-4 w-4">
+                                    <ButtonVue class="ml-5" @click="sendComment()">SEND COMMENT</ButtonVue>
+                              </div>
+                        </div>
+                  </div>
+
+                  </div> 
             </div>
             <div class="col-span-1 lg:col-span-1  flex flex-col space-y-14">
                   <div class="flex flex-col space-y-3">
@@ -83,7 +100,8 @@ import ProfileLayoutVue from '@/layouts/ProfileLayout.vue'
 import SinglePostVue from '@/components/ProfilePosts/SinglePost.vue'
 import SugesstionsVue from '@/components/ProfilePosts/Sugesstions.vue'
 import BadgeVue from '@/components/Badge/Badge.vue'
-import WriteComment from '@/components/Comments/WriteComment.vue'
+// import WriteComment from '@/components/Comments/WriteComment.vue'
+import ButtonVue from '@/components/Buttons/Button.vue'
 import axios from 'axios'
 
 export default {
@@ -93,7 +111,8 @@ export default {
             SinglePostVue,
             SugesstionsVue,
             BadgeVue,
-            WriteComment
+            ButtonVue
+            // WriteComment
       },
       data() {
             return {
@@ -103,7 +122,9 @@ export default {
                   comments: [],
                   categories: null,
                   commentsCurrentPage: 1,
-                  commentsLastPage: null
+                  commentsLastPage: null,
+                  commentToSend: '',
+                 
             }
 
       },
@@ -115,8 +136,8 @@ export default {
             this.getCategories();
       },
       methods: {
-
-            async getItem(id) {
+        
+            getItem(id) {
                   axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {
                               console.log('posttttt', res.data.data)
@@ -124,7 +145,7 @@ export default {
                         })
 
             },
-            async getPosts() {
+            getPosts() {
                   axios.get(`https://ma.tenton.al/api/v1/posts?related_to=${this.postId}`)
                         .then(res => {
                               this.posts = res.data.data.slice(0, 4)
@@ -148,13 +169,7 @@ export default {
                         });
 
             },
-            formatDate(dateString) {
-                  const date = new Date(dateString);
-                  // Then specify how you want your dates to be formatted
-                  return new Intl.DateTimeFormat('default', {
-                        dateStyle: 'long'
-                  }).format(date);
-            },
+           
             loadMore() {
                   const id = this.$route.params.id;
                   if(this.commentsCurrentPage < this.commentsLastPage) {
@@ -165,6 +180,45 @@ export default {
                                     this.comments = this.comments.concat(res.data.data)
                               })
                   }
+            },
+            sendComment() {
+                  const token = localStorage.getItem('token')
+                  const identifier = this.genRandomString(30)
+                  axios.post(`https://ma.tenton.al/api/v1/discussions/post/${this.postId}/messages`, {
+                        text: this.commentToSend,
+                        identifier: identifier
+                  }, {
+                        headers: {
+                              'Authorization': `Bearer ${token}`,
+                              'Content-Type': 'application/json',
+                        }
+                  }).then(res => {
+                        console.log(res)
+                        this.commentToSend = ''
+                        this.getComments()
+                  })
+            },
+            genRandomString(length) {
+                var result           = '';
+                var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+
+                for ( var i = 0; i < length; i++ ) {
+                        result += characters.charAt(Math.floor(Math.random() * 
+                    charactersLength));
+                    }
+                    return result;
+            },
+             formatDate(dateString) {
+                  const date = new Date(dateString);
+                  // Then specify how you want your dates to be formatted
+                  return new Intl.DateTimeFormat('default', {
+                        dateStyle: 'long'
+                  }).format(date);
+            },
+
+            getCommentUserImage(comment){
+                 return comment?.user.resource_url;
             }
       }
 }
