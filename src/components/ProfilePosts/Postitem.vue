@@ -10,13 +10,12 @@
             <img :src="post.resources[0]?.preview_url" alt="image" class=" w-full h-40 object-cover">
             </div>
             <div v-else>
-                <div class="w-60 h-40  ">
-                    <img class="object-cover w-full rounded-lg h-full" src="@/assets/images/defaultImage.svg" alt=""/>
-                </div>
+                
+                    <img class="w-full h-40 object-cover" src="@/assets/images/defaultImage.svg" alt=""/>
             </div>
         </div>
 
-        <p class="text-gray-700 font-bold">
+        <p class="text-gray-700 font-bold truncate">
                 {{ post.title }}
         </p>
 
@@ -27,7 +26,7 @@
                 Posted at {{ formatDate( post.created_at) }}
             </p>
         </div>
-        <p class="text-gray-500">{{ post.content }}</p>
+        <p class="text-gray-500 truncate">{{ post.content }}</p>
         <p class="text-blue-400 font-medium tracking-wider ">
             <span class=" hover:border-b border-blue-200 ">READ MORE</span>
         </p>
