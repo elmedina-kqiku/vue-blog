@@ -4,11 +4,11 @@
             <div class="col-span-1 lg:col-span-2 space-y-4">
                   <SinglePostVue :post="post" />
                   <div class="flex justify-between tracking-wider ">
-                        <button>PREVIOUS</button>
-                        <button class="uppercase">Next</button>
+                        <router-link v-if="previousPost" :to="'/profile/posts/'+previousPost.id">PREVIOUS</router-link>
+                        <router-link v-if="nextPost" :to="'/profile/posts/'+nextPost.id" class="uppercase">Next</router-link>
                   </div>
                   <p class="border-b border-gray-200 pb-4 text-sm font-normal text-black tracking-wider ">
-                        Comments ()
+                        Comments ({{ comments.length}})
                   </p>
                   <div v-if="comments">
                         <div class="" v-for="comment in comments" :key="comment.id" :post="comment">
@@ -21,12 +21,11 @@
                                                 <p class="text-xs text-black font-bold">{{comment.user.first_name}}></p>
                                                 <p class="text-xs text-gray-500">{{formatDate(comment.created_at)}}</p>
                                           </div>
-                                          
 
                                           <div class="comment-reply flex my-1 mx-2 bg-gray-100 py-1 px-2 rounded-sm" v-if="comment && comment.replyable">
                                                 <div class="flex icon items-center justify-center mr-1 transform rotate -rotate-90">
                                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-6 6m0 0l-6-6m6 6V9a6 6 0 0112 0v3" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-6 6m0 0l-6-6m6 6V9a6 6 0 0112 0v3" />
                                                       </svg>
                                                 </div>
                                                 <div class="flex flex-col">
@@ -48,28 +47,26 @@
                                           </p>
                                     </div>
                               </div>
-                              </div>
+                        </div>
                   </div>
                   <div class="w-full py-2 flex items-center justify-center">
                         <button @click="loadMore" class="px-3 py-1 bg-transparent border border-blue-400 rounded-sm text-blue-400 uppercase">Load more</button>
                   </div>
 
-                  
                   <div>
-                      
                         <div class="send-comment flex flex-row justify-between bg-gray-200 px-5 py-5">
-                        <img src="@/assets/images/profileicon/profileicon.svg" alt="" class="mb-12 h-14 w-14">
-                        <div class="flex flex-col justify-between bg-white w-full ml-6 py-3 px-6">
-                              <textarea name="sendComment" v-model="commentToSend" rows="3"></textarea>
-                              <div class="flex flex-row justify-end items-center">
-                                    <img src="@/assets/images/alternate_email_icon.svg" alt="" class="ml-5 -h-4 w-4">
-                                    <img src="@/assets/images/emojiicon.svg" alt="" class="ml-5 h-4 w-4">
-                                    <ButtonVue class="ml-5" @click="sendComment()">SEND COMMENT</ButtonVue>
+                              <img src="@/assets/images/profileicon/profileicon.svg" alt="" class="mb-12 h-14 w-14">
+                              <div class="flex flex-col justify-between bg-white w-full ml-6 py-3 px-6">
+                                    <textarea name="sendComment" v-model="commentToSend" rows="3"></textarea>
+                                    <div class="flex flex-row justify-end items-center">
+                                          <img src="@/assets/images/alternate_email_icon.svg" alt="" class="ml-5 -h-4 w-4">
+                                          <img src="@/assets/images/emojiicon.svg" alt="" class="ml-5 h-4 w-4">
+                                          <ButtonVue class="ml-5" @click="sendComment()">SEND COMMENT</ButtonVue>
+                                    </div>
                               </div>
                         </div>
-                  </div>
 
-                  </div> 
+                  </div>
             </div>
             <div class="col-span-1 lg:col-span-1  flex flex-col space-y-14">
                   <div class="flex flex-col space-y-3">
@@ -124,7 +121,10 @@ export default {
                   commentsCurrentPage: 1,
                   commentsLastPage: null,
                   commentToSend: '',
-                 
+                  currentPage: 0,
+                  nextPost: null,
+                  previousPost:null,
+
             }
 
       },
@@ -134,13 +134,15 @@ export default {
             this.getItem(this.$route.params.id);
             this.getComments();
             this.getCategories();
+
+            this.mountNextPost();
+            this.mountPreviousPost();
       },
       methods: {
-        
+
             getItem(id) {
                   axios.get('https://ma.tenton.al/api/v1/posts/' + id)
                         .then(res => {
-                              console.log('posttttt', res.data.data)
                               this.post = res.data.data
                         })
 
@@ -169,10 +171,10 @@ export default {
                         });
 
             },
-           
+
             loadMore() {
                   const id = this.$route.params.id;
-                  if(this.commentsCurrentPage < this.commentsLastPage) {
+                  if (this.commentsCurrentPage < this.commentsLastPage) {
                         this.commentsCurrentPage++
                         axios.get(`https://ma.tenton.al/api/v1/discussions/post/${id}/messages?page=${this.commentsCurrentPage}`)
                               .then(res => {
@@ -192,34 +194,56 @@ export default {
                               'Authorization': `Bearer ${token}`,
                               'Content-Type': 'application/json',
                         }
-                  }).then(res => {
-                        console.log(res)
+                  }).then(() => {
                         this.commentToSend = ''
                         this.getComments()
                   })
             },
-            genRandomString(length) {
-                var result           = '';
-                var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                var charactersLength = characters.length;
 
-                for ( var i = 0; i < length; i++ ) {
-                        result += characters.charAt(Math.floor(Math.random() * 
-                    charactersLength));
-                    }
-                    return result;
+            mountPreviousPost() {
+                  const id = this.$route.params.id;
+
+                  axios.get(`https://ma.tenton.al/api/v1/posts/${id}/previous`)
+                        .then(res => {
+                              this.previousPost = res.data.data;
+                        })
             },
-             formatDate(dateString) {
+
+            mountNextPost() {
+                  const id = this.$route.params.id;
+
+                  axios.get(`https://ma.tenton.al/api/v1/posts/${id}/next`)
+                        .then(res => {
+                              this.nextPost = res.data.data;
+                        })
+            },
+
+            getCommentUserImage(comment) {
+                  if(!comment.user){
+                        return null;
+                  }
+
+                  return comment.user.resource_url;
+            },
+
+            genRandomString(length) {
+                  var result = '';
+                  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                  var charactersLength = characters.length;
+
+                  for (var i = 0; i < length; i++) {
+                        result += characters.charAt(Math.floor(Math.random() *
+                              charactersLength));
+                  }
+                  return result;
+            },
+            formatDate(dateString) {
                   const date = new Date(dateString);
                   // Then specify how you want your dates to be formatted
                   return new Intl.DateTimeFormat('default', {
                         dateStyle: 'long'
                   }).format(date);
             },
-
-            getCommentUserImage(comment){
-                 return comment?.user.resource_url;
-            }
       }
 }
 </script>
