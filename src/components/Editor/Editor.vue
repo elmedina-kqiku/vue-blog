@@ -17,7 +17,7 @@
    
   </div>
   <div>
-  <editor-content :editor="editor"  class="h-auto"/>
+  <editor-content :editor="editor" :value="modelValue" @input="updateValue"  class="h-auto"/>
   </div>
   </div>
 </template>
@@ -38,6 +38,12 @@ export default {
     }
   },
 
+  props: {
+        modelValue:{
+            default:"",
+        }
+    },
+
   mounted() {
     this.editor = new Editor({
       editorProps: {
@@ -55,7 +61,13 @@ export default {
   beforeUnmount() {
     this.editor.destroy()
   },
+  methods: {
+  updateValue(event) {
+            this.$emit('update:modelValue', event.target.value);
+        }
 }
+}
+
 </script>
 
 <style lang="scss">
