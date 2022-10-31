@@ -126,7 +126,7 @@ export default {
                         .then(res => {
                               console.log(res)
                               if(res.status == 201) {
-                                    this.$router.push('/profile/dashboard')
+                                    this.$router.push('/profile/categories')
                               } else {
                                     alert('Sign up was not successful!')
                               }
