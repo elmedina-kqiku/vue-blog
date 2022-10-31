@@ -1,31 +1,36 @@
+
+
 <template>
 <ProfileLayoutVue>
+      <div>
       <form @submit.prevent="createPost">
             <p class="text-base text-black">CREATE POST</p>
 
-            <div class="flex flex-col xl:flex-row justify-between md:space-x-0 xl:space-x-10 mt-5">
+            <div class=" xl:flex-row justify-between md:space-x-0 xl:space-x-10 mt-5">
 
-                  <div class="font-normal text-sm text-black grid grid-cols-1 gap-4">
-                        <div class="bg-gray-200 w-56 h-40 xl:w-96 xl:h-60 grid place-content-center">
-                              <!-- <UploadPhoto class="w-full" /> -->
+                  <div class="flex flex-cols justify-between space-x-10 just font-normal text-sm text-black ">
+                        <div class="bg-gray-200 w-56 h-40 xl:w-96 xl:h-60 grid place-content-center mt-10">
+                              <img :src="previewImage" class="uploading-image" />
+                              <input type="file" accept="" @change=uploadImage >
                         </div>
+                        <div class="w-full">
+                              <div>
+                                    <label for="">Title</label>
+                                    <InputVue v-model="form.title" class="mt-2" />
+                              </div>
 
-                        <div>
-                              <label for="">Title</label>
-                              <InputVue v-model="form.title" class="mt-2" />
-                        </div>
+                              <div>
+                                    <label for="">Content</label>
+                                    <TextareaVue v-model="form.content" rows="4" class="mt-2" />
+                              </div>
 
-                        <div>
-                              <label for="">Content</label>
-                              <TextareaVue v-model="form.content" rows="4" class="mt-2" />
-                        </div>
-
-                        <div v-if="categories">
-                              <label for="categories">Categories:</label>
-                              <div class="w-full">
-                                    <select name="categories" id="categories" v-model="form.categories" multiple class="w-full bg-white rounded-lg p-2 border mt-2">
-                                          <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
-                                    </select>
+                              <div v-if="categories">
+                                    <label for="categories">Categories:</label>
+                                    <div class="w-full">
+                                          <select name="categories" id="categories" v-model="form.categories" multiple class="w-full bg-white rounded-lg p-2 border mt-2">
+                                                <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
+                                          </select>
+                                    </div>
                               </div>
                         </div>
 
@@ -37,6 +42,7 @@
                   <ButtonVue type="submit">Save</ButtonVue>
             </div>
       </form>
+      </div>
 </ProfileLayoutVue>
 </template>
 
@@ -61,11 +67,12 @@ export default {
                   form: {
                         title: "",
                         content: "",
-                        resources: "",
+                        resources: [],
                         categories: [],
                         publish: true,
                   },
-                  categories: []
+                  categories: [],
+                  previewImage: null
             }
       },
       mounted() {
@@ -83,7 +90,9 @@ export default {
                               title: this.form.title,
                               content: this.form.content
                         },
+                        resources: this.resources,
                         categories: this.form.categories,
+                        selectedFile: null,
                   }
 
                   axios.post(`https://ma.tenton.al/api/v1/posts`, data, {
@@ -94,13 +103,20 @@ export default {
                                     path: '/profile/posts/' + res.data.data.id
                               });
                         })
+
             },
+            uploadImage(event){
+                  this.selectedFile = event.target.files[0]
+                  console.log(event)
+            },
+            
             getCategories() {
                   axios.get('https://ma.tenton.al/api/v1/base/post_categories')
                         .then(res => {
                               this.categories = res.data.data
-                        })
+                        }) 
             }
       }
 }
-</script>
+
+</script> 
